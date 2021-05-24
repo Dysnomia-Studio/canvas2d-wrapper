@@ -75,17 +75,16 @@ export default function renderCanvas(
 				break;
 			case 'image':
 				if(!imgCache[element.src]) {
+					console.debug('Adding', element.src, 'to local canvas cache for future uses ...');
 					imgCache[element.src] = new Image(element.src);
 				}
 
-				imgCache[element.src].addEventListener('load', () => {
-					context.drawImage(imgCache[element.src],
-						left + element.x * localTileSize,
-						top + element.y * localTileSize,
-						element.width * localTileSize,
-						element.height * localTileSize
-					);
-				});
+				context.drawImage(imgCache[element.src],
+					left + element.x * localTileSize,
+					top + element.y * localTileSize,
+					element.width * localTileSize,
+					element.height * localTileSize
+				);
 				break;
 			default:
 				throw new Error('Unsupported shape type:', element.type);
