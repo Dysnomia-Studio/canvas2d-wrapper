@@ -5,6 +5,8 @@ export default function renderCanvas(context, width, height, elements, tileSize,
 	let prevFillStyle = '';
 	let prevStrokeStyle = '';
 
+	const localTileSize = tileSize * state.zoom;
+
 	context.clearRect(0, 0, width, height);
 
 	for(const element of elements) {
@@ -21,18 +23,18 @@ export default function renderCanvas(context, width, height, elements, tileSize,
 		switch(element.type) {
 			case 'rect':
 				if(element.fill) {
-					context.fillRect(left + element.x * tileSize, top + element.y * tileSize, element.width * tileSize, element.height * tileSize);
+					context.fillRect(left + element.x * localTileSize, top + element.y * localTileSize, element.width * localTileSize, element.height * localTileSize);
 				}
 				if(element.stroke) {
-					context.fillRect(left + element.x * tileSize, top + element.y * tileSize, element.width * tileSize, element.height * tileSize);
+					context.fillRect(left + element.x * localTileSize, top + element.y * localTileSize, element.width * localTileSize, element.height * localTileSize);
 				}
 				break;
 			case 'circle':
 				if(element.fill) {
-					context.fillCicle(left + element.x * tileSize, top + element.y * tileSize, element.radius * tileSize);
+					context.fillCicle(left + element.x * localTileSize, top + element.y * localTileSize, element.radius * localTileSize);
 				}
 				if(element.stroke) {
-					context.strokeCicle(left + element.x * tileSize, top + element.y * tileSize, element.radius * tileSize);
+					context.strokeCicle(left + element.x * localTileSize, top + element.y * localTileSize, element.radius * localTileSize);
 				}
 				break;
 			default:

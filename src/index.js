@@ -20,6 +20,7 @@ export const Canvas2D = ({ elements, width, height, trackMouseMove=true, minZoom
 				context,
 				left: 0,
 				top: 0,
+				zoom: 1,
 			});
 		}
 	}, []);
@@ -52,7 +53,7 @@ export const Canvas2D = ({ elements, width, height, trackMouseMove=true, minZoom
 
 	let onWheel = null;
 	if(minZoom !== maxZoom) {
-		onWheel = (e) => mouseWheel(e, state, setState);
+		onWheel = (e) => mouseWheel(e, state, setState, minZoom, maxZoom);
 	}
 
 	// Canvas render loop

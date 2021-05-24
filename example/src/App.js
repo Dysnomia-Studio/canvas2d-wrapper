@@ -23,7 +23,7 @@ const App = () => {
 			width={1200}
 			height={700}
 			minZoom={0.25}
-			maxZoom={1}
+			maxZoom={4}
 			onClick={(e) => {
 				console.log('Click event:', e);
 			}}
