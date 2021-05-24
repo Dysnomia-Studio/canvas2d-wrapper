@@ -79,7 +79,7 @@ export default function renderCanvas(
 				}
 
 				imgCache[element.src].addEventListener('load', () => {
-					context.drawImage(element.src,
+					context.drawImage(imgCache[element.src],
 						left + element.x * localTileSize,
 						top + element.y * localTileSize,
 						element.width * localTileSize,
