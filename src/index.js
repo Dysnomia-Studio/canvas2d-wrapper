@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState } from 'react';
 
 import './index.css';
 
@@ -10,10 +10,19 @@ import sortElements from './functions/sortElements';
 
 import renderCanvas from './render/renderCanvas';
 
-export const Canvas2D = ({ elements, width, height, trackMouseMove=true, minZoom=1, maxZoom=1, tileSize=32, onClick }) => {
+export const Canvas2D = ({
+	elements,
+	width,
+	height,
+	trackMouseMove = true,
+	minZoom = 1,
+	maxZoom = 1,
+	tileSize = 32,
+	onClick,
+}) => {
 	// Hooks
 	const [state, setState] = useState({});
-	let canvasRef = useCallback((canvas) => {
+	const canvasRef = useCallback((canvas) => {
 		if(canvas !== null) {
 			const context = canvas.getContext('2d');
 
@@ -32,7 +41,7 @@ export const Canvas2D = ({ elements, width, height, trackMouseMove=true, minZoom
 	}
 
 	if(typeof width !== 'number' || typeof height !== 'number') {
-		throw new Error('width/height should be specified and be numbers.')
+		throw new Error('width/height should be specified and be numbers.');
 	}
 
 	if(minZoom > maxZoom) {
@@ -40,7 +49,7 @@ export const Canvas2D = ({ elements, width, height, trackMouseMove=true, minZoom
 	}
 
 	if(typeof onClick !== 'function' && typeof onClick !== 'undefined') {
-		throw new Error('onClick should be a function.')
+		throw new Error('onClick should be a function.');
 	}
 
 	// Sort elements
@@ -65,7 +74,14 @@ export const Canvas2D = ({ elements, width, height, trackMouseMove=true, minZoom
 	// Canvas render loop
 	if(state.context) {
 		window.requestAnimationFrame(() => {
-			renderCanvas(state.context, width, height, sortedElements, tileSize, state);
+			renderCanvas(
+				state.context,
+				width,
+				height,
+				sortedElements,
+				tileSize,
+				state,
+			);
 		});
 	}
 
@@ -80,4 +96,4 @@ export const Canvas2D = ({ elements, width, height, trackMouseMove=true, minZoom
 			className="canvas2d-wrapper"
 		/>
 	);
-}
+};

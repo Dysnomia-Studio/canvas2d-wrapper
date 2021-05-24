@@ -22,7 +22,10 @@ export default function elementClick(e, elements, tileSize, state) {
 				};
 			}
 		} else if(element.type === 'cicle') {
-			const distance = (x - left) * (x - left) + (y - top) * (element.y - top);
+			const distance = (
+				(x - left) * (x - left) +
+				(y - top) * (element.y - top)
+			);
 
 			if(distance <= element.radius) {
 				return {

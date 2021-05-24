@@ -1,7 +1,7 @@
-import { ExampleComponent } from '.'
+import { Canvas2D } from '.';
 
-describe('ExampleComponent', () => {
-  it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
-  })
-})
+describe('Canvas2D', () => {
+	it('is truthy', () => {
+		expect(Canvas2D).toBeTruthy();
+	});
+});

@@ -1,6 +1,13 @@
 import calcTileSize from '../functions/calcTileSize';
 
-export default function renderCanvas(context, width, height, elements, tileSize, state) {
+export default function renderCanvas(
+	context,
+	width,
+	height,
+	elements,
+	tileSize,
+	state,
+) {
 	const left = state.left;
 	const top = state.top;
 
@@ -12,12 +19,18 @@ export default function renderCanvas(context, width, height, elements, tileSize,
 	context.clearRect(0, 0, width, height);
 
 	for(const element of elements) {
-		if(element.fill !== prevFillStyle && typeof element.fill !== 'undefined') {
+		if(
+			element.fill !== prevFillStyle &&
+			typeof element.fill !== 'undefined'
+		) {
 			context.fillStyle = element.fill;
 			prevFillStyle = element.fill;
 		}
 
-		if(element.stroke !== prevStrokeStyle && typeof element.stroke !== 'undefined') {
+		if(
+			element.stroke !== prevStrokeStyle &&
+			typeof element.stroke !== 'undefined'
+		) {
 			context.strokeStyle = element.stroke;
 			prevStrokeStyle = element.stroke;
 		}
@@ -25,18 +38,36 @@ export default function renderCanvas(context, width, height, elements, tileSize,
 		switch(element.type) {
 			case 'rect':
 				if(element.fill) {
-					context.fillRect(left + element.x * localTileSize, top + element.y * localTileSize, element.width * localTileSize, element.height * localTileSize);
+					context.fillRect(
+						left + element.x * localTileSize,
+						top + element.y * localTileSize,
+						element.width * localTileSize,
+						element.height * localTileSize,
+					);
 				}
 				if(element.stroke) {
-					context.fillRect(left + element.x * localTileSize, top + element.y * localTileSize, element.width * localTileSize, element.height * localTileSize);
+					context.fillRect(
+						left + element.x * localTileSize,
+						top + element.y * localTileSize,
+						element.width * localTileSize,
+						element.height * localTileSize,
+					);
 				}
 				break;
 			case 'circle':
 				if(element.fill) {
-					context.fillCicle(left + element.x * localTileSize, top + element.y * localTileSize, element.radius * localTileSize);
+					context.fillCicle(
+						left + element.x * localTileSize,
+						top + element.y * localTileSize,
+						element.radius * localTileSize,
+					);
 				}
 				if(element.stroke) {
-					context.strokeCicle(left + element.x * localTileSize, top + element.y * localTileSize, element.radius * localTileSize);
+					context.strokeCicle(
+						left + element.x * localTileSize,
+						top + element.y * localTileSize,
+						element.radius * localTileSize,
+					);
 				}
 				break;
 			default:
