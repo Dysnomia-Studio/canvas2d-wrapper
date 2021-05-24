@@ -13,7 +13,8 @@ const App = () => {
 			y: 50 - Math.round(Math.random() * 100),
 			width: 1,
 			height: 1,
-			fill: (Math.random() ? 'black': 'green'),
+			fill: (Math.random() > 0.5 ? 'black': undefined),
+			stroke: (Math.random() > 0.5 ? 'black': undefined),
 		});
 	}
 

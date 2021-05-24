@@ -1,5 +1,7 @@
 import calcTileSize from '../functions/calcTileSize';
 
+const imgCache = {};
+
 export default function renderCanvas(
 	context,
 	width,
@@ -46,7 +48,7 @@ export default function renderCanvas(
 					);
 				}
 				if(element.stroke) {
-					context.fillRect(
+					context.strokeRect(
 						left + element.x * localTileSize,
 						top + element.y * localTileSize,
 						element.width * localTileSize,
@@ -55,20 +57,35 @@ export default function renderCanvas(
 				}
 				break;
 			case 'circle':
+				context.beginPath();
+				context.arc(
+					left + element.x * localTileSize,
+					top + element.y * localTileSize,
+					element.radius * localTileSize,
+					0,
+					2 * Math.PI
+				);
+
 				if(element.fill) {
-					context.fillCicle(
-						left + element.x * localTileSize,
-						top + element.y * localTileSize,
-						element.radius * localTileSize,
-					);
+					context.fill();
 				}
 				if(element.stroke) {
-					context.strokeCicle(
+					context.stroke();
+				}
+				break;
+			case 'image':
+				if(!imgCache[element.src]) {
+					imgCache[element.src] = new Image(element.src);
+				}
+
+				imgCache[element.src].addEventListener('load', () => {
+					context.drawImage(element.src,
 						left + element.x * localTileSize,
 						top + element.y * localTileSize,
-						element.radius * localTileSize,
+						element.width * localTileSize,
+						element.height * localTileSize
 					);
-				}
+				});
 				break;
 			default:
 				throw new Error('Unsupported shape type:', element.type);
