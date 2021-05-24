@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react'
 
 import './index.css';
 
+import elementClick from './events/elementClick';
 import mouseMove from './events/mouseMove';
 import mouseWheel from './events/mouseWheel';
 
@@ -56,6 +57,11 @@ export const Canvas2D = ({ elements, width, height, trackMouseMove=true, minZoom
 		onWheel = (e) => mouseWheel(e, state, setState, minZoom, maxZoom);
 	}
 
+	let onClickFn = null;
+	if(onClick) {
+		onClickFn = (e) => onClick(elementClick(e, elements, tileSize, state));
+	}
+
 	// Canvas render loop
 	if(state.context) {
 		window.requestAnimationFrame(() => {
@@ -70,6 +76,7 @@ export const Canvas2D = ({ elements, width, height, trackMouseMove=true, minZoom
 			height={height}
 			onMouseMove={onMouseMove}
 			onWheel={onWheel}
+			onClick={onClickFn}
 			className="canvas2d-wrapper"
 		/>
 	);

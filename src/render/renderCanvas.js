@@ -1,3 +1,5 @@
+import calcTileSize from '../functions/calcTileSize';
+
 export default function renderCanvas(context, width, height, elements, tileSize, state) {
 	const left = state.left;
 	const top = state.top;
@@ -5,7 +7,7 @@ export default function renderCanvas(context, width, height, elements, tileSize,
 	let prevFillStyle = '';
 	let prevStrokeStyle = '';
 
-	const localTileSize = tileSize * state.zoom;
+	const localTileSize = calcTileSize(tileSize, state.zoom);
 
 	context.clearRect(0, 0, width, height);
 
