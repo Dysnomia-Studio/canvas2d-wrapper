@@ -4,7 +4,7 @@
   "description": "A React Wrapper to use HTML5 canvas with mouse move and zoom abilities.",
   "author": "Elanis",
   "license": "MIT",
-  "repository": "Dysnomia/canvas2d-wrapper",
+  "repository": "Dysnomia-studio/canvas2d-wrapper",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
