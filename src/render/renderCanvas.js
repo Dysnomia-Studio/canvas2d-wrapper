@@ -76,7 +76,8 @@ export default function renderCanvas(
 			case 'image':
 				if(!imgCache[element.src]) {
 					console.debug('Adding', element.src, 'to local canvas cache for future uses ...');
-					imgCache[element.src] = new Image(element.src);
+					imgCache[element.src] = new Image();
+					imgCache[element.src].src = element.src;
 				}
 
 				context.drawImage(imgCache[element.src],
