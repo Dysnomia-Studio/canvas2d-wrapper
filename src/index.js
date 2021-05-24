@@ -28,8 +28,8 @@ export const Canvas2D = ({
 
 			setState({
 				context,
-				left: 0,
-				top: 0,
+				left: width/2,
+				top: height/2,
 				zoom: 1,
 			});
 		}
