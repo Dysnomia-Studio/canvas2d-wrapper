@@ -17,7 +17,7 @@ export default function Canvas2D({
 	trackMouseMove = true,
 	minZoom = 1,
 	maxZoom = 1,
-	tileSize = 32,
+	tileSize = 1,
 	onClick,
 }) {
 	// Hooks
