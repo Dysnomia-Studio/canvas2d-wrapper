@@ -1,12 +1,13 @@
 export default class CanvasObject {
-	constructor(id, x, y) {
+	constructor(id, x, y, zIndex) {
 		this.id = id;
 		this.x = x;
 		this.y = y;
+		this['z-index'] = zIndex;
 	}
 
-	set zIndex(index) {
-		this['z-index'] = index;
+	set zIndex(zIndex) {
+		this['z-index'] = zIndex;
 	}
 
 	get zIndex() {

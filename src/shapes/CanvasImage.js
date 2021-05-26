@@ -12,9 +12,10 @@ export default class CanvasImage extends CanvasObject {
 	 * @param      {number}  		width   Picture width in canvas
 	 * @param      {number}  		height  Picture height in canvas
 	 * @param      {string}      	src 	Image source link
+	 * @param      {number}      	zIndex 	Stack order of the element
 	 */
-	constructor({ id, x, y, width, height, src }) {
-		super(id, x, y);
+	constructor({ id, x, y, width, height, src, zIndex }) {
+		super(id, x, y, zIndex);
 
 		this.width = width;
 		this.height = height;
