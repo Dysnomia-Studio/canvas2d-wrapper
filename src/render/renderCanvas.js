@@ -1,4 +1,21 @@
+import Circle from '../shapes/Circle';
+import CanvasImage from '../shapes/CanvasImage';
+import Rect from '../shapes/Rect';
+import Polygon from '../shapes/Polygon';
+
 import calcTileSize from '../functions/calcTileSize';
+
+import renderCircle from './renderCircle';
+import renderImage from './renderImage';
+import renderRect from './renderRect';
+import renderPolygon from './renderPolygon';
+
+const renderFn = {
+	['Circle']: renderCircle,
+	['CanvasImage']: renderImage,
+	['Rect']: renderRect,
+	['Polygon']: renderPolygon,
+};
 
 const imgCache = {};
 
@@ -37,58 +54,11 @@ export default function renderCanvas(
 			prevStrokeStyle = element.stroke;
 		}
 
-		switch(element.type) {
-			case 'rect':
-				if(element.fill) {
-					context.fillRect(
-						left + element.x * localTileSize,
-						top + element.y * localTileSize,
-						element.width * localTileSize,
-						element.height * localTileSize,
-					);
-				}
-				if(element.stroke) {
-					context.strokeRect(
-						left + element.x * localTileSize,
-						top + element.y * localTileSize,
-						element.width * localTileSize,
-						element.height * localTileSize,
-					);
-				}
-				break;
-			case 'circle':
-				context.beginPath();
-				context.arc(
-					left + element.x * localTileSize,
-					top + element.y * localTileSize,
-					element.radius * localTileSize,
-					0,
-					2 * Math.PI
-				);
-
-				if(element.fill) {
-					context.fill();
-				}
-				if(element.stroke) {
-					context.stroke();
-				}
-				break;
-			case 'image':
-				if(!imgCache[element.src]) {
-					console.debug('Adding', element.src, 'to local canvas cache for future uses ...');
-					imgCache[element.src] = new Image();
-					imgCache[element.src].src = element.src;
-				}
-
-				context.drawImage(imgCache[element.src],
-					left + element.x * localTileSize,
-					top + element.y * localTileSize,
-					element.width * localTileSize,
-					element.height * localTileSize
-				);
-				break;
-			default:
-				throw new Error('Unsupported shape type:', element.type);
+		const type = element.constructor.name;
+		if(renderFn[type]) {
+			renderFn[type](context, element, left, top, localTileSize);
+		} else {
+			throw new Error('Unsupported shape type:' + type);
 		}
 	}
 }

@@ -1,20 +1,45 @@
 import React from 'react'
 
-import { Canvas2D } from 'canvas2d-wrapper'
+import { Canvas2D, CanvasImage, Circle, Polygon, Rect } from 'canvas2d-wrapper'
 import 'canvas2d-wrapper/dist/index.css'
 
 const App = () => {
 	const elements = [];
 	for(let i = 0; i < 100; i++) {
-		elements.push({
-			id: i,
-			type: 'rect',
+		let object = null;
+		if(Math.random() > 0.5) {
+			object = new Rect(
+				i,
+				50 - Math.round(Math.random() * 100),
+				50 - Math.round(Math.random() * 100),
+				1,
+				1,
+			);
+		} else {
+			object = new Circle(
+				i,
+				50 - Math.round(Math.random() * 100),
+				50 - Math.round(Math.random() * 100),
+				0.5
+			);
+		}
+
+		if(Math.random() > 0.5) {
+			object.fill = 'black';
+		}
+
+		if(Math.random() > 0.5) {
+			object.stroke = 'black';
+		}
+
+		elements.push(object);
+	}
+
+	const points = [];
+	for(let i = 0; i < 5; i++) {
+		points.push({
 			x: 50 - Math.round(Math.random() * 100),
 			y: 50 - Math.round(Math.random() * 100),
-			width: 1,
-			height: 1,
-			fill: (Math.random() > 0.5 ? 'black': undefined),
-			stroke: (Math.random() > 0.5 ? 'black': undefined),
 		});
 	}
 
