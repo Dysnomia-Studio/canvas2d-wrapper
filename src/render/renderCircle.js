@@ -1,5 +1,6 @@
 export default function renderCircle(context, element, left, top, localTileSize) {
 	context.beginPath();
+
 	context.arc(
 		left + element.x * localTileSize,
 		top + element.y * localTileSize,

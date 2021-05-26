@@ -1,6 +1,7 @@
 import calcTileSize from '../functions/calcTileSize';
 
 import inCircle from '../collisions/inCircle';
+import inPoly from '../collisions/inPoly';
 import inRect from '../collisions/inRect';
 
 export default function elementClick(e, elements, tileSize, state) {
@@ -26,6 +27,15 @@ export default function elementClick(e, elements, tileSize, state) {
 				break;
 			case 'Circle':
 				if(inCircle(element, x, y, left, top, localTileSize)) {
+					return {
+						id: element.id,
+						element,
+						originalEvent: e,
+					};
+				}
+				break;
+			case 'Polygon':
+				if(inPoly(element, x, y, left, top, localTileSize)) {
 					return {
 						id: element.id,
 						element,
