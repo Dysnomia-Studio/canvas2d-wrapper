@@ -19,6 +19,8 @@ export default function Canvas2D({
 	maxZoom = 1,
 	tileSize = 1,
 	onClick,
+	lockXAxis = false,
+	lockYAxis = false,
 }) {
 	// Hooks
 	const [state, setState] = useState({});
@@ -58,7 +60,7 @@ export default function Canvas2D({
 	// Render
 	let onMouseMove = null;
 	if(trackMouseMove) {
-		onMouseMove = (e) => mouseMove(e, state, setState);
+		onMouseMove = (e) => mouseMove(e, state, setState, lockXAxis, lockYAxis);
 	}
 
 	let onWheel = null;
