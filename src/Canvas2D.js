@@ -21,6 +21,7 @@ export default function Canvas2D({
 	onClick,
 	lockXAxis = false,
 	lockYAxis = false,
+	id=null,
 }) {
 	// Hooks
 	const [state, setState] = useState({});
@@ -89,6 +90,7 @@ export default function Canvas2D({
 
 	return (
 		<canvas
+			id={id}
 			ref={canvasRef}
 			width={width}
 			height={height}
