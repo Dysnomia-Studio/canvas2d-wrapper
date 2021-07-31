@@ -1,3 +1,5 @@
+const imgCache = {};
+
 export default function renderImage(context, element, left, top, localTileSize) {
 	if(!imgCache[element.src]) {
 		imgCache[element.src] = new Image();

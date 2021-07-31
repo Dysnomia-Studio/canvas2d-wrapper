@@ -17,8 +17,6 @@ const renderFn = {
 	['Polygon']: renderPolygon,
 };
 
-const imgCache = {};
-
 export default function renderCanvas(
 	context,
 	width,
