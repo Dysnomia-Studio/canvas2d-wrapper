@@ -22,12 +22,20 @@ export default function Canvas2D({
 	lockXAxis = false,
 	lockYAxis = false,
 	id=null,
+	smoothingQuality='medium'
 }) {
 	// Hooks
 	const [state, setState] = useState({});
 	const canvasRef = useCallback((canvas) => {
 		if(canvas !== null) {
 			const context = canvas.getContext('2d');
+
+			if(smoothingQuality === false) {
+				context.imageSmoothingEnabled = false;
+			} else {
+				context.imageSmoothingEnabled = true;
+				context.imageSmoothingQuality = smoothingQuality;
+			}
 
 			setState({
 				context,
