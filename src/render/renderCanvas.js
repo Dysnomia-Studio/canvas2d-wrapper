@@ -11,10 +11,10 @@ import renderRect from './renderRect';
 import renderPolygon from './renderPolygon';
 
 const renderFn = {
-	[Circle.prototype.constructor.name]: renderCircle,
-	[CanvasImage.prototype.constructor.name]: renderImage,
-	[Rect.prototype.constructor.name]: renderRect,
-	[Polygon.prototype.constructor.name]: renderPolygon,
+	[(new Circle({})).constructorName]: renderCircle,
+	[(new CanvasImage({})).constructorName]: renderImage,
+	[(new Rect({})).constructorName]: renderRect,
+	[(new Polygon({ points: [{}] })).constructorName]: renderPolygon,
 };
 
 export default function renderCanvas(
@@ -52,7 +52,7 @@ export default function renderCanvas(
 			prevStrokeStyle = element.stroke;
 		}
 
-		const type = element.constructor.name;
+		const type = element.constructorName;
 		if(renderFn[type]) {
 			renderFn[type](context, element, left, top, localTileSize);
 		} else {

@@ -13,4 +13,8 @@ export default class CanvasObject {
 	get zIndex() {
 		return this['z-index'] || 0;
 	}
+
+	get constructorName() {
+		return 'CanvasObject';
+	}
 }

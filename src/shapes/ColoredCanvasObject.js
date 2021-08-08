@@ -7,4 +7,8 @@ export default class ColoredCanvasObject extends CanvasObject {
 		this.fill = fill;
 		this.stroke = stroke;
 	}
+
+	get constructorName() {
+		return 'ColoredCanvasObject';
+	}
 }

@@ -15,4 +15,8 @@ export default class Polygon extends ColoredCanvasObject {
 
 		this.points = points;
 	}
+
+	get constructorName() {
+		return 'Polygon';
+	}
 }

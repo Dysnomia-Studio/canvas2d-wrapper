@@ -19,4 +19,8 @@ export default class Rect extends ColoredCanvasObject {
 		this.width = width;
 		this.height = height;
 	}
+
+	get constructorName() {
+		return 'Rect';
+	}
 }

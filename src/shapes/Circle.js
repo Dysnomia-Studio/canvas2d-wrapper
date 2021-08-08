@@ -17,5 +17,9 @@ export default class Circle extends ColoredCanvasObject {
 
 		this.radius = radius;
 	}
+
+	get constructorName() {
+		return 'Circle';
+	}
 }
 

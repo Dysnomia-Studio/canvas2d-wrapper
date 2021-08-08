@@ -28,4 +28,8 @@ export default class CanvasImage extends CanvasObject {
 		this.swidth = swidth;
 		this.sheight = sheight;
 	}
+
+	get constructorName() {
+		return 'CanvasImage';
+	}
 }
