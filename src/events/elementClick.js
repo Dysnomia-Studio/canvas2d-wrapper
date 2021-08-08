@@ -14,7 +14,7 @@ export default function elementClick(e, elements, tileSize, state) {
 		const x = element.x * localTileSize;
 		const y = element.y * localTileSize;
 
-		switch(element.constructor.name) {
+		switch(element.constructorName) {
 			case 'Rect':
 			case 'CanvasImage':
 				if(inRect(element, x, y, left, top, localTileSize)) {
