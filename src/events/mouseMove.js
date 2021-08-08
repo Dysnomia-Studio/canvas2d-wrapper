@@ -5,7 +5,7 @@ export default function mouseMove(event, props, setProps, lockXAxis, lockYAxis) 
 		...props,
 	};
 
-	if(event.nativeEvent.which === LEFT_BUTTON && !!props.prevX) {
+	if(event.nativeEvent.buttons === LEFT_BUTTON && !!props.prevX) {
 		if(!lockXAxis) {
 			newProps.left += (event.screenX - props.prevX);
 		}
