@@ -11,10 +11,10 @@ import renderRect from './renderRect';
 import renderPolygon from './renderPolygon';
 
 const renderFn = {
-	['Circle']: renderCircle,
-	['CanvasImage']: renderImage,
-	['Rect']: renderRect,
-	['Polygon']: renderPolygon,
+	[Circle.prototype.constructor.name]: renderCircle,
+	[CanvasImage.prototype.constructor.name]: renderImage,
+	[Rect.prototype.constructor.name]: renderRect,
+	[Polygon.prototype.constructor.name]: renderPolygon,
 };
 
 export default function renderCanvas(
