@@ -1,4 +1,5 @@
-window.__canvas2dWrapper__.imgCache = {};
+window.__canvas2dWrapper__ = __canvas2dWrapper__ || {};
+window.__canvas2dWrapper__.imgCache = __canvas2dWrapper__.imgCache || {};
 
 export default function renderImage(context, element, left, top, localTileSize) {
 	if(!__canvas2dWrapper__.imgCache[element.src]) {
