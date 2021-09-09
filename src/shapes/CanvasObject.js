@@ -1,9 +1,10 @@
 export default class CanvasObject {
-	constructor(id, x, y, zIndex) {
+	constructor(id, x, y, zIndex, draggable) {
 		this.id = id;
 		this.x = x;
 		this.y = y;
 		this['z-index'] = zIndex;
+		this.draggable = draggable;
 	}
 
 	set zIndex(zIndex) {

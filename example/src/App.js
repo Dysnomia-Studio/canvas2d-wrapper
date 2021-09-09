@@ -10,19 +10,20 @@ const App = () => {
 		if(Math.random() > 0.5) {
 			object = new Rect({
 				id: i,
-				x: 50 - Math.round(Math.random() * 100),
-				y: 50 - Math.round(Math.random() * 100),
-				width: 1,
-				height: 1,
+				x: 500 - Math.round(Math.random() * 1000),
+				y: 500 - Math.round(Math.random() * 1000),
+				width: 32,
+				height: 32,
 				fill: (Math.random() > 0.5) ? 'black' : undefined,
-				stroke: (Math.random() > 0.5) ? 'black' : undefined
+				stroke: (Math.random() > 0.5) ? 'black' : undefined,
+				draggable: true
 			});
 		} else {
 			object = new Circle({
 				id: i,
-				x: 50 - Math.round(Math.random() * 100),
-				y: 50 - Math.round(Math.random() * 100),
-				radius: 0.5,
+				x: 500 - Math.round(Math.random() * 1000),
+				y: 500 - Math.round(Math.random() * 1000),
+				radius: 16,
 				fill: (Math.random() > 0.5) ? 'black' : undefined,
 				stroke: (Math.random() > 0.5) ? 'black' : undefined
 			});
@@ -38,8 +39,8 @@ const App = () => {
 	const points = [];
 	for(let i = 0; i < 5; i++) {
 		points.push({
-			x: 50 - Math.round(Math.random() * 100),
-			y: 50 - Math.round(Math.random() * 100),
+			x: 500 - Math.round(Math.random() * 1000),
+			y: 500 - Math.round(Math.random() * 1000),
 		});
 	}
 
@@ -65,10 +66,11 @@ const App = () => {
 			height={700}
 			minZoom={0.25}
 			maxZoom={4}
-			tileSize={32}
+			tileSize={1}
 			onClick={(e) => {
 				console.log('Click event:', e);
 			}}
+			dragObjects={true}
 		/>
 	);
 }

@@ -14,8 +14,8 @@ export default class CanvasImage extends CanvasObject {
 	 * @param      {string}      	src 	Image source link
 	 * @param      {number}      	zIndex 	Stack order of the element
 	 */
-	constructor({ id, x, y, width, height, src, zIndex }) {
-		super(id, x, y, zIndex);
+	constructor({ id, x, y, width, height, src, zIndex, draggable }) {
+		super(id, x, y, zIndex, draggable);
 
 		this.width = width;
 		this.height = height;

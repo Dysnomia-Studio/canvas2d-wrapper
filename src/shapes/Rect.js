@@ -13,8 +13,8 @@ export default class Rect extends ColoredCanvasObject {
 	 * @param      {string}      	stroke 	DOMString, CanvasGradient or CanvsPattern representing what should be put in CanvasRenderingContext2D.strokeStyle
 	 * @param      {number}      	zIndex 	Stack order of the element
 	 */
-	constructor({ id, x, y, width, height, fill, stroke, zIndex }) {
-		super(id, x, y, fill, stroke, zIndex);
+	constructor({ id, x, y, width, height, fill, stroke, zIndex, draggable }) {
+		super(id, x, y, fill, stroke, zIndex, draggable);
 
 		this.width = width;
 		this.height = height;

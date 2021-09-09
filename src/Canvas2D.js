@@ -22,7 +22,8 @@ export default function Canvas2D({
 	lockXAxis = false,
 	lockYAxis = false,
 	id=null,
-	smoothingQuality='medium'
+	smoothingQuality='medium',
+	dragObjects=false
 }) {
 	// Hooks
 	const [state, setState] = useState({});
@@ -38,9 +39,12 @@ export default function Canvas2D({
 			}
 
 			setState({
+				boundingClientRect: canvas.getBoundingClientRect(),
 				context,
 				left: width/2,
 				top: height/2,
+				width,
+				height,
 				zoom: 1,
 			});
 		}
@@ -69,7 +73,7 @@ export default function Canvas2D({
 	// Render
 	let onMouseMove = null;
 	if(trackMouseMove) {
-		onMouseMove = (e) => mouseMove(e, state, setState, lockXAxis, lockYAxis);
+		onMouseMove = (e) => mouseMove(e, elements, tileSize, state, setState, lockXAxis, lockYAxis, dragObjects);
 	}
 
 	let onWheel = null;

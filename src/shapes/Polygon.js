@@ -10,8 +10,8 @@ export default class Polygon extends ColoredCanvasObject {
 	 * @param      {string}      	stroke 	DOMString, CanvasGradient or CanvsPattern representing what should be put in CanvasRenderingContext2D.strokeStyle
 	 * @param      {number}      	zIndex 	Stack order of the element
 	 */
-	constructor({ id, points, fill, stroke, zIndex }) {
-		super(id, points[0].x, points[0].y, fill, stroke, zIndex);
+	constructor({ id, points, fill, stroke, zIndex, draggable }) {
+		super(id, points[0].x, points[0].y, fill, stroke, zIndex, draggable);
 
 		this.points = points;
 	}
