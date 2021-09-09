@@ -70,6 +70,9 @@ const App = () => {
 			onClick={(e) => {
 				console.log('Click event:', e);
 			}}
+			onElementMoved={(elt, x, y) => {
+				console.log('Moved element:', elt, x, y);
+			}}
 			dragObjects={true}
 		/>
 	);

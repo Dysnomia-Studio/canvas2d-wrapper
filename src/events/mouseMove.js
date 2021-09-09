@@ -3,7 +3,7 @@ import collideElement from '../collisions/collideElement';
 const LEFT_BUTTON = 1;
 let selectedObject = null;
 
-export default function mouseMove(event, elements, tileSize, props, setProps, lockXAxis, lockYAxis, dragObjects) {
+export default function mouseMove(event, elements, tileSize, props, setProps, lockXAxis, lockYAxis, dragObjects, onElementMoved) {
 	const newProps = {
 		...props,
 	};
@@ -23,6 +23,14 @@ export default function mouseMove(event, elements, tileSize, props, setProps, lo
 				selectedObject.element.y = (-props.top) + (event.clientY - props.boundingClientRect.top) - selectedObject.element.height / 2;
 
 				moved = true;
+
+				if(onElementMoved) {
+					onElementMoved(
+						selectedObject,
+						(event.screenX - props.prevX),
+						(event.screenY - props.prevY),
+					);
+				}
 			}
 		}
 
