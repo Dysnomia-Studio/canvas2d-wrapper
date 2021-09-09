@@ -1,6 +1,7 @@
 import collideElement from '../collisions/collideElement';
 
 const LEFT_BUTTON = 1;
+let selectedObject = null;
 
 export default function mouseMove(event, elements, tileSize, props, setProps, lockXAxis, lockYAxis, dragObjects) {
 	const newProps = {
@@ -13,11 +14,13 @@ export default function mouseMove(event, elements, tileSize, props, setProps, lo
 	if(event.nativeEvent.buttons === LEFT_BUTTON && !!props.prevX) {
 		let moved = false;
 		if(dragObjects) {
-			const clickedElement = collideElement(event, elements, left, top, tileSize, props.zoom);
+			if(selectedObject === null) {
+				selectedObject = collideElement(event, elements, left, top, tileSize, props.zoom);
+			}
 
-			if(clickedElement !== null && clickedElement.element.draggable) {
-				clickedElement.element.x = (-props.left) + (event.clientX - props.boundingClientRect.left) - clickedElement.element.width / 2;
-				clickedElement.element.y = (-props.top) + (event.clientY - props.boundingClientRect.top) - clickedElement.element.height / 2;
+			if(selectedObject !== null && selectedObject.element.draggable) {
+				selectedObject.element.x = (-props.left) + (event.clientX - props.boundingClientRect.left) - selectedObject.element.width / 2;
+				selectedObject.element.y = (-props.top) + (event.clientY - props.boundingClientRect.top) - selectedObject.element.height / 2;
 
 				moved = true;
 			}
@@ -32,6 +35,8 @@ export default function mouseMove(event, elements, tileSize, props, setProps, lo
 				newProps.top += (event.screenY - props.prevY);
 			}
 		}
+	} else {
+		selectedObject = null;
 	}
 
 	setProps({
