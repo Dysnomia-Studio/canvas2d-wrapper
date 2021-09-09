@@ -1,14 +1,14 @@
-const imgCache = {};
+window.__canvas2dWrapper__.imgCache = {};
 
 export default function renderImage(context, element, left, top, localTileSize) {
-	if(!imgCache[element.src]) {
-		imgCache[element.src] = new Image();
-		imgCache[element.src].src = element.src;
+	if(!__canvas2dWrapper__.imgCache[element.src]) {
+		__canvas2dWrapper__.imgCache[element.src] = new Image();
+		__canvas2dWrapper__.imgCache[element.src].src = element.src;
 	}
 
 	if(!element.sx) {
 		context.drawImage(
-			imgCache[element.src],
+			__canvas2dWrapper__.imgCache[element.src],
 			left + element.x * localTileSize,
 			top + element.y * localTileSize,
 			element.width * localTileSize,
@@ -16,7 +16,7 @@ export default function renderImage(context, element, left, top, localTileSize) 
 		);
 	} else {
 		context.drawImage(
-			imgCache[element.src],
+			__canvas2dWrapper__.imgCache[element.src],
 			element.sx,
 			element.sy,
 			element.swidth,
