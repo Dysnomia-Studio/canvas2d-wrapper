@@ -4,6 +4,8 @@
 
 [![NPM](https://img.shields.io/npm/v/canvas2d-wrapper.svg)](https://www.npmjs.com/package/canvas2d-wrapper)
 
+Do you want an example app made with this library ? Check out my game Alchemistry on [Steam](https://store.steampowered.com/app/1730540/Alchemistry/) or on [itch.io](https://elanis.itch.io/alchemistry).
+
 ## Install
 
 ```bash
