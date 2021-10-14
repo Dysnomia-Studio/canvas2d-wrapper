@@ -61,6 +61,7 @@ const App = () => {
 
 	return (
 		<Canvas2D 
+			id="MyCanvas"
 			elements={elements}
 			width={1200}
 			height={700}

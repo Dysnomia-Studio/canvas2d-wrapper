@@ -22,9 +22,9 @@ export default function Canvas2D({
 	onElementMoved,
 	lockXAxis = false,
 	lockYAxis = false,
-	id=null,
 	smoothingQuality='medium',
-	dragObjects=false
+	dragObjects=false,
+	...otherProps
 }) {
 	// Hooks
 	const [state, setState] = useState({});
@@ -103,7 +103,6 @@ export default function Canvas2D({
 
 	return (
 		<canvas
-			id={id}
 			ref={canvasRef}
 			width={width}
 			height={height}
@@ -111,6 +110,7 @@ export default function Canvas2D({
 			onWheel={onWheel}
 			onClick={onClickFn}
 			className="canvas2d-wrapper"
+			{...otherProps}
 		/>
 	);
 };
