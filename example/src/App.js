@@ -71,6 +71,9 @@ const App = () => {
 			onClick={(e) => {
 				console.log('Click event:', e);
 			}}
+			onHover={(e) => {
+				console.log('Hover event:', e);
+			}}
 			onElementMoved={(elt, x, y) => {
 				console.log('Moved element:', elt, x, y);
 			}}

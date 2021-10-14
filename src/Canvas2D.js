@@ -19,6 +19,7 @@ export default function Canvas2D({
 	maxZoom = 1,
 	tileSize = 1,
 	onClick,
+	onHover,
 	onElementMoved,
 	lockXAxis = false,
 	lockYAxis = false,
@@ -74,7 +75,7 @@ export default function Canvas2D({
 	// Render
 	let onMouseMove = null;
 	if(trackMouseMove) {
-		onMouseMove = (e) => mouseMove(e, elements, tileSize, state, setState, lockXAxis, lockYAxis, dragObjects, onElementMoved);
+		onMouseMove = (e) => mouseMove(e, elements, tileSize, state, setState, lockXAxis, lockYAxis, dragObjects, onElementMoved, onHover);
 	}
 
 	let onWheel = null;
