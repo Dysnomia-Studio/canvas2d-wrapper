@@ -68,6 +68,8 @@ const App = () => {
 			minZoom={0.25}
 			maxZoom={4}
 			tileSize={1}
+			deltaLeft={100}
+			deltaTop={100}
 			onClick={(e) => {
 				console.log('Click event:', e);
 			}}

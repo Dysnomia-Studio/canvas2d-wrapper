@@ -8,8 +8,8 @@ export default function mouseMove(event, elements, tileSize, props, setProps, lo
 		...props,
 	};
 
-	const left = -props.left + event.pageX - event.target.offsetLeft;
-	const top = -props.top + event.pageY - event.target.offsetTop;
+	const left = -props.left - props.deltaLeft + event.pageX - event.target.offsetLeft;
+	const top = -props.top - props.deltaTop + event.pageY - event.target.offsetTop;
 
 	if(event.nativeEvent.buttons === LEFT_BUTTON && !!props.prevX) {
 		let moved = false;
@@ -19,8 +19,8 @@ export default function mouseMove(event, elements, tileSize, props, setProps, lo
 			}
 
 			if(selectedObject !== null && selectedObject.element.draggable) {
-				selectedObject.element.x = (-props.left) + (event.clientX - props.boundingClientRect.left) - selectedObject.element.width / 2;
-				selectedObject.element.y = (-props.top) + (event.clientY - props.boundingClientRect.top) - selectedObject.element.height / 2;
+				selectedObject.element.x = (-props.left - props.deltaLeft) + (event.clientX - props.boundingClientRect.left) - selectedObject.element.width / 2;
+				selectedObject.element.y = (-props.top - props.deltaLeft) + (event.clientY - props.boundingClientRect.top) - selectedObject.element.height / 2;
 
 				moved = true;
 
