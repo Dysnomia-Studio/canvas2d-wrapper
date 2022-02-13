@@ -50,11 +50,12 @@ export default function Canvas2D({
 				width,
 				height,
 				zoom: 1,
-				deltaLeft,
-				deltaTop,
 			});
 		}
 	}, []);
+
+	state.deltaTop = deltaTop;
+	state.deltaLeft = deltaLeft;
 
 	// Check inputs
 	if(typeof elements !== 'object' || !Array.isArray(elements)) {
