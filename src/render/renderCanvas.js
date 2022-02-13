@@ -25,8 +25,8 @@ export default function renderCanvas(
 	tileSize,
 	state,
 ) {
-	const left = state.left;
-	const top = state.top;
+	const left = state.left + state.deltaLeft;
+	const top = state.top + state.deltaTop;
 
 	let prevFillStyle = '';
 	let prevStrokeStyle = '';

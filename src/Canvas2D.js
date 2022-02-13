@@ -25,6 +25,8 @@ export default function Canvas2D({
 	lockYAxis = false,
 	smoothingQuality='medium',
 	dragObjects=false,
+	deltaLeft=0,
+	deltaTop=0,
 	...otherProps
 }) {
 	// Hooks
@@ -48,6 +50,8 @@ export default function Canvas2D({
 				width,
 				height,
 				zoom: 1,
+				deltaLeft,
+				deltaTop,
 			});
 		}
 	}, []);
