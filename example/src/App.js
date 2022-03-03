@@ -73,6 +73,9 @@ const App = () => {
 			onClick={(e) => {
 				console.log('Click event:', e);
 			}}
+			onRightClick={(e) => {
+				console.log('Right click event:', e);
+			}}
 			onHover={(e) => {
 				console.log('Hover event:', e);
 			}}

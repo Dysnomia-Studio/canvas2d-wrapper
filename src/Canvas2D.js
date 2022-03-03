@@ -19,6 +19,7 @@ export default function Canvas2D({
 	maxZoom = 1,
 	tileSize = 1,
 	onClick,
+	onRightClick,
 	onHover,
 	onElementMoved,
 	lockXAxis = false,
@@ -51,6 +52,14 @@ export default function Canvas2D({
 				height,
 				zoom: 1,
 			});
+
+
+			if(onRightClick) {
+				canvas.addEventListener('contextmenu', (e) => {
+					e.preventDefault();
+					onRightClick(e);
+				});
+			}
 		}
 	}, []);
 
