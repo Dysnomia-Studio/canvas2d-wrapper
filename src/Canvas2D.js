@@ -3,12 +3,15 @@ import React, { useCallback, useState } from 'react';
 import './index.css';
 
 import elementClick from './events/elementClick';
+import elementRightClick from './events/elementRightClick';
 import mouseMove from './events/mouseMove';
 import mouseWheel from './events/mouseWheel';
 
 import sortElements from './functions/sortElements';
 
 import renderCanvas from './render/renderCanvas';
+
+let prevEvent;
 
 export default function Canvas2D({
 	elements,
@@ -45,6 +48,7 @@ export default function Canvas2D({
 
 			setState({
 				boundingClientRect: canvas.getBoundingClientRect(),
+				canvas,
 				context,
 				left: width/2,
 				top: height/2,
@@ -52,14 +56,6 @@ export default function Canvas2D({
 				height,
 				zoom: 1,
 			});
-
-
-			if(onRightClick) {
-				canvas.addEventListener('contextmenu', (e) => {
-					e.preventDefault();
-					onRightClick(e);
-				});
-			}
 		}
 	}, []);
 
@@ -100,6 +96,17 @@ export default function Canvas2D({
 	let onClickFn = null;
 	if(onClick) {
 		onClickFn = (e) => onClick(elementClick(e, elements, tileSize, state));
+	}
+
+	if(onRightClick && state.canvas) {
+		if(prevEvent) {
+			state.canvas.removeEventListener('contextmenu', prevEvent);
+		}
+		prevEvent = (e) => {
+			e.preventDefault();
+			onRightClick(elementRightClick(e, elements, tileSize, state));
+		};
+		state.canvas.addEventListener('contextmenu', prevEvent);
 	}
 
 	// Canvas render loop
