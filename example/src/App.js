@@ -82,6 +82,9 @@ const App = () => {
 			onElementMoved={(elt, x, y) => {
 				console.log('Moved element:', elt, x, y);
 			}}
+			onWheel={(e) => {
+				console.log('Wheel event:', e);
+			}}
 			dragObjects={true}
 		/>
 	);

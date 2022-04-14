@@ -25,6 +25,7 @@ export default function Canvas2D({
 	onRightClick,
 	onHover,
 	onElementMoved,
+	onWheel,
 	lockXAxis = false,
 	lockYAxis = false,
 	smoothingQuality='medium',
@@ -88,9 +89,14 @@ export default function Canvas2D({
 		onMouseMove = (e) => mouseMove(e, elements, tileSize, state, setState, lockXAxis, lockYAxis, dragObjects, onElementMoved, onHover);
 	}
 
-	let onWheel = null;
-	if(minZoom !== maxZoom) {
-		onWheel = (e) => mouseWheel(e, state, setState, minZoom, maxZoom);
+	let onWheelFn = (e) => {
+		if(onWheel) {
+			onWheel(e);
+		}
+		
+		if(minZoom !== maxZoom) {
+			mouseWheel(e, state, setState, minZoom, maxZoom);
+		}
 	}
 
 	let onClickFn = null;
@@ -129,7 +135,7 @@ export default function Canvas2D({
 			width={width}
 			height={height}
 			onMouseMove={onMouseMove}
-			onWheel={onWheel}
+			onWheel={onWheelFn}
 			onClick={onClickFn}
 			className="canvas2d-wrapper"
 			{...otherProps}
