@@ -134,7 +134,7 @@ export default function Canvas2D({
 			ref={canvasRef}
 			width={width}
 			height={height}
-			onMouseMove={onMouseMove}
+			onPointerMove={onMouseMove}
 			onWheel={onWheelFn}
 			onClick={onClickFn}
 			className="canvas2d-wrapper"

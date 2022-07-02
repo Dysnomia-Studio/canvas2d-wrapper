@@ -2,6 +2,7 @@ import collideElement from '../collisions/collideElement';
 
 const LEFT_BUTTON = 1;
 let selectedObject = null;
+let unselectTimeoutId = 0;
 
 export default function mouseMove(event, elements, tileSize, props, setProps, lockXAxis, lockYAxis, dragObjects, onElementMoved, onHover) {
 	const newProps = {
@@ -39,6 +40,7 @@ export default function mouseMove(event, elements, tileSize, props, setProps, lo
 		}
 
 		if(!moved) {
+			// Lock Axis
 			if(!lockXAxis) {
 				newProps.left += (event.screenX - props.prevX);
 			}
@@ -46,6 +48,18 @@ export default function mouseMove(event, elements, tileSize, props, setProps, lo
 			if(!lockYAxis) {
 				newProps.top += (event.screenY - props.prevY);
 			}
+		}
+
+		if(event.nativeEvent.pointerType !== 'mouse') {
+			unselectTimeoutId = setTimeout(() => {
+				console.log('unselect');
+				selectedObject = null;
+				setProps({
+					...newProps,
+					prevX: null,
+					prevY: null,
+				});				
+			}, 300);
 		}
 	} else {
 		if(onHover) {
