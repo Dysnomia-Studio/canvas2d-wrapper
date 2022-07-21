@@ -1,5 +1,8 @@
 import React from 'react';
 
+/* eslint-disable no-console */
+/* eslint-disable no-magic-numbers */
+
 import { Canvas2D, CanvasImage, Circle, Polygon, Rect } from 'canvas2d-wrapper';
 import 'canvas2d-wrapper/dist/index.css';
 

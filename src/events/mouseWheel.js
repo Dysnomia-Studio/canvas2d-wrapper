@@ -1,9 +1,11 @@
+const WHEEL_DELTA = 0.05;
+
 export default function mouseWheel(event, props, setProps, minZoom, maxZoom) {
 	let zoom = props.zoom;
 	if(event.deltaY < 0) {
-		zoom += 0.05;
+		zoom += WHEEL_DELTA;
 	} else {
-		zoom -= 0.05;
+		zoom -= WHEEL_DELTA;
 	}
 
 	zoom = Math.max(zoom, minZoom);
