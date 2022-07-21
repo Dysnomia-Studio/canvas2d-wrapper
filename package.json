@@ -35,7 +35,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react": "github:standard/eslint-config-standard-react#f4524992516ede26dc2d4264966acb6bd6744d66",
     "eslint-plugin-standard": "^5.0.0",
     "gh-pages": "^3.2.3",
     "microbundle-crl": "^0.13.10",
