@@ -58,7 +58,7 @@ export default function mouseMove(event, elements, tileSize, props, setProps, lo
 					...newProps,
 					prevX: null,
 					prevY: null,
-				});				
+				});
 			}, 300);
 		}
 	} else {
