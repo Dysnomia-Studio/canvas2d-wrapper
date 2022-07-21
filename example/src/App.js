@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import { Canvas2D, CanvasImage, Circle, Polygon, Rect } from 'canvas2d-wrapper'
-import 'canvas2d-wrapper/dist/index.css'
+/* eslint-disable no-console */
+/* eslint-disable no-magic-numbers */
+
+import { Canvas2D, CanvasImage, Circle, Polygon, Rect } from 'canvas2d-wrapper';
+import 'canvas2d-wrapper/dist/index.css';
 
 const App = () => {
 	const elements = [];
@@ -60,7 +63,7 @@ const App = () => {
 	elements.push(polygon2);
 
 	return (
-		<Canvas2D 
+		<Canvas2D
 			id="MyCanvas"
 			elements={elements}
 			width={1200}
@@ -88,6 +91,6 @@ const App = () => {
 			dragObjects={true}
 		/>
 	);
-}
+};
 
-export default App
+export default App;

@@ -89,15 +89,15 @@ export default function Canvas2D({
 		onMouseMove = (e) => mouseMove(e, elements, tileSize, state, setState, lockXAxis, lockYAxis, dragObjects, onElementMoved, onHover);
 	}
 
-	let onWheelFn = (e) => {
+	const onWheelFn = (e) => {
 		if(onWheel) {
 			onWheel(e);
 		}
-		
+
 		if(minZoom !== maxZoom) {
 			mouseWheel(e, state, setState, minZoom, maxZoom);
 		}
-	}
+	};
 
 	let onClickFn = null;
 	if(onClick) {
@@ -141,4 +141,4 @@ export default function Canvas2D({
 			{...otherProps}
 		/>
 	);
-};
+}
