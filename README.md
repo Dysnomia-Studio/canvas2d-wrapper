@@ -2,7 +2,10 @@
 
 > A React Wrapper to use HTML5 canvas with mouse move and zoom abilities.
 
-[![NPM](https://img.shields.io/npm/v/canvas2d-wrapper.svg)](https://www.npmjs.com/package/canvas2d-wrapper)
+[![NPM](https://img.shields.io/npm/v/canvas2d-wrapper.svg)](https://www.npmjs.com/package/canvas2d-wrapper)  
+[![Reliability Rating](https://sonar.dysnomia.studio/api/project_badges/measure?project=canvas2d-wrapper&metric=reliability_rating)](https://sonar.dysnomia.studio/dashboard?id=canvas2d-wrapper) [![Maintainability Rating](https://sonar.dysnomia.studio/api/project_badges/measure?project=canvas2d-wrapper&metric=sqale_rating)](https://sonar.dysnomia.studio/dashboard?id=canvas2d-wrapper) [![Security Rating](https://sonar.dysnomia.studio/api/project_badges/measure?project=canvas2d-wrapper&metric=security_rating)](https://sonar.dysnomia.studio/dashboard?id=canvas2d-wrapper)  
+[![Duplicated Lines (%)](https://sonar.dysnomia.studio/api/project_badges/measure?project=canvas2d-wrapper&metric=duplicated_lines_density)](https://sonar.dysnomia.studio/dashboard?id=canvas2d-wrapper) [![Coverage](https://sonar.dysnomia.studio/api/project_badges/measure?project=canvas2d-wrapper&metric=coverage)](https://sonar.dysnomia.studio/dashboard?id=canvas2d-wrapper)
+
 
 Do you want an example app made with this library ? Check out my game Alchemistry on [Steam](https://store.steampowered.com/app/1730540/Alchemistry/) or on [itch.io](https://elanis.itch.io/alchemistry).
 
