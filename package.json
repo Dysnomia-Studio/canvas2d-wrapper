@@ -18,8 +18,8 @@
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
     "test:lint": "eslint .",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
+    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom --coverage",
+    "test:watch": "react-scripts test --env=jsdom --coverage",
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build"
   },
@@ -27,7 +27,11 @@
     "react": "^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
     "babel-eslint": "^10.0.3",
+    "canvas": "^2.10.2",
     "cross-env": "^7.0.2",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
