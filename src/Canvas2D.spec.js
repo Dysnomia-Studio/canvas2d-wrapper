@@ -73,12 +73,15 @@ test('Renders Canvas2D without problem with default values', async() => {
 		/>
 	);
 
+	await new Promise((r) => setTimeout(r, 2000)); // Wait for some time to be sure it won't crash
+
 	waitFor(() => expect(screen.getByTestId('custom-element')).toBeTruthy(), { interval: 200 });
 });
 
 test('Renders Canvas2D without problem with custom values', async() => {
 	render(
 		<Canvas2D
+			data-testid="custom-element"
 			id="MyCanvas"
 			elements={elements}
 			width={1200}
@@ -105,9 +108,14 @@ test('Renders Canvas2D without problem with custom values', async() => {
 			onWheel={(e) => {
 				console.log('Wheel event:', e);
 			}}
+			onFrame={(e) => {
+				console.log('Frame event:', e);
+			}}
 			dragObjects={true}
 		/>
 	);
+
+	await new Promise((r) => setTimeout(r, 2000)); // Wait for some time to be sure it won't crash
 
 	waitFor(() => expect(screen.getByTestId('custom-element')).toBeTruthy(), { interval: 200 });
 });

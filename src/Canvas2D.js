@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import './index.css';
 
@@ -11,7 +11,10 @@ import sortElements from './functions/sortElements';
 
 import renderCanvas from './render/renderCanvas';
 
-let prevEvent;
+function onRightClickEvent(e) {
+	e.preventDefault();
+	onRightClick(elementRightClick(e, elements, tileSize, state));
+}
 
 export default function Canvas2D({
 	elements,
@@ -26,6 +29,7 @@ export default function Canvas2D({
 	onHover,
 	onElementMoved,
 	onWheel,
+	onFrame,
 	lockXAxis = false,
 	lockYAxis = false,
 	smoothingQuality='medium',
@@ -104,30 +108,41 @@ export default function Canvas2D({
 		onClickFn = (e) => onClick(elementClick(e, elements, tileSize, state));
 	}
 
-	if(onRightClick && state.canvas) {
-		if(prevEvent) {
-			state.canvas.removeEventListener('contextmenu', prevEvent);
+	// Right click Event
+	useEffect(() => {
+		if(onRightClick && state.canvas) {
+			state.canvas.addEventListener('contextmenu', onRightClickEvent);
+			return state.canvas.removeEventListener('contextmenu', onRightClickEvent);
 		}
-		prevEvent = (e) => {
-			e.preventDefault();
-			onRightClick(elementRightClick(e, elements, tileSize, state));
-		};
-		state.canvas.addEventListener('contextmenu', prevEvent);
-	}
+	}, [state.canvas, onRightClick]);
 
 	// Canvas render loop
-	if(state.context) {
-		window.requestAnimationFrame(() => {
-			renderCanvas(
-				state.context,
-				width,
-				height,
-				sortedElements,
-				tileSize,
-				state,
-			);
-		});
-	}
+	useEffect(() => {
+		let shouldRender = true;
+		function render() {
+			if(onFrame) {
+				onFrame();
+			}
+
+			if(state.context) {
+				renderCanvas(
+					state.context,
+					width,
+					height,
+					sortedElements,
+					tileSize,
+					state,
+				);
+			}
+
+			if(shouldRender) {
+				window.requestAnimationFrame(render);
+			}
+		}
+		window.requestAnimationFrame(render);
+
+		return () => { shouldRender = false; };
+	}, [state.context, onFrame]);
 
 	return (
 		<canvas
