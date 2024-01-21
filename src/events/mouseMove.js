@@ -63,7 +63,7 @@ export default function mouseMove(event, elements, tileSize, props, setProps, lo
 		}
 	} else {
 		if(onHover) {
-			onHover(collideElement(event, elements, left, top, tileSize, props.zoom));
+			onHover(collideElement(event, elements, left, top, tileSize, props.zoom), { x: left, y: top });
 		}
 
 		selectedObject = null;
