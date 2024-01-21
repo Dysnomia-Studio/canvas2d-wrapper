@@ -111,7 +111,7 @@ export default function Canvas2D({
 
 		if(onRightClick && state.canvas) {
 			state.canvas.addEventListener('contextmenu', onRightClickEvent);
-			return state.canvas.removeEventListener('contextmenu', onRightClickEvent);
+			return () => { state.canvas.removeEventListener('contextmenu', onRightClickEvent); };
 		}
 	}, [state.canvas, onRightClick]);
 
