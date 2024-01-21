@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 let intervalId = 0;
+const FRAME_INTERVAL = 15; // TODO: requestAnimationFrame ?
 export default function useGamepad() {
 	const [gamepad, setGamepad] = useState();
 
@@ -8,7 +9,7 @@ export default function useGamepad() {
 		clearInterval(intervalId);
 		intervalId = setInterval(() =>
 			setGamepad(navigator.getGamepads()[0])
-		, 15);
+		, FRAME_INTERVAL);
 	}, []);
 
 	return gamepad;

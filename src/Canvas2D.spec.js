@@ -67,7 +67,7 @@ test('Renders Canvas2D without problem with default values', async() => {
 		<Canvas2D
 			data-testid="custom-element"
 			id="MyCanvas"
-			elements={elements}
+			onFrame={() => elements}
 			width={1200}
 			height={700}
 		/>
@@ -83,7 +83,6 @@ test('Renders Canvas2D without problem with custom values', async() => {
 		<Canvas2D
 			data-testid="custom-element"
 			id="MyCanvas"
-			elements={elements}
 			width={1200}
 			height={700}
 			minZoom={0.25}
@@ -110,6 +109,7 @@ test('Renders Canvas2D without problem with custom values', async() => {
 			}}
 			onFrame={(e) => {
 				console.log('Frame event:', e);
+				return elements;
 			}}
 			dragObjects={true}
 		/>
@@ -127,14 +127,14 @@ test('Canvas2D throws without elements', async() => {
 			width={1200}
 			height={700}
 		/>
-	)).toThrow('Invalid elements, should be an array !');
+	)).toThrow('onFrame should be a function.');
 });
 
 test('Canvas2D throws with invalid type on width/height', async() => {
 	expect(() => render(
 		<Canvas2D
 			id="MyCanvas"
-			elements={elements}
+			onFrame={() => elements}
 			width={'1200'}
 			height={700}
 		/>
@@ -143,7 +143,7 @@ test('Canvas2D throws with invalid type on width/height', async() => {
 	expect(() => render(
 		<Canvas2D
 			id="MyCanvas"
-			elements={elements}
+			onFrame={() => elements}
 			width={1200}
 			height={'700'}
 		/>
@@ -154,7 +154,7 @@ test('Canvas2D throws with invalid zoom values', async() => {
 	expect(() => render(
 		<Canvas2D
 			id="MyCanvas"
-			elements={elements}
+			onFrame={() => elements}
 			width={1200}
 			height={700}
 			minZoom={2}
@@ -167,7 +167,7 @@ test('Canvas2D throws if no onClick is defined with wrong value', async() => {
 	expect(() => render(
 		<Canvas2D
 			id="MyCanvas"
-			elements={elements}
+			onFrame={() => elements}
 			width={1200}
 			height={700}
 			onClick={10}
