@@ -11,13 +11,9 @@ import sortElements from './functions/sortElements';
 
 import renderCanvas from './render/renderCanvas';
 
-function onRightClickEvent(e) {
-	e.preventDefault();
-	onRightClick(elementRightClick(e, elements, tileSize, state));
-}
+let elements = [];
 
 export default function Canvas2D({
-	elements,
 	width,
 	height,
 	trackMouseMove = true,
@@ -68,10 +64,6 @@ export default function Canvas2D({
 	state.deltaLeft = deltaLeft;
 
 	// Check inputs
-	if(typeof elements !== 'object' || !Array.isArray(elements)) {
-		throw new Error('Invalid elements, should be an array !');
-	}
-
 	if(typeof width !== 'number' || typeof height !== 'number') {
 		throw new Error('width/height should be specified and be numbers.');
 	}
@@ -84,8 +76,9 @@ export default function Canvas2D({
 		throw new Error('onClick should be a function.');
 	}
 
-	// Sort elements
-	const sortedElements = sortElements(elements);
+	if(typeof onFrame !== 'function') {
+		throw new Error('onFrame should be a function.');
+	}
 
 	// Render
 	let onMouseMove = null;
@@ -108,8 +101,14 @@ export default function Canvas2D({
 		onClickFn = (e) => onClick(elementClick(e, elements, tileSize, state));
 	}
 
+
 	// Right click Event
 	useEffect(() => {
+		function onRightClickEvent(e) {
+			e.preventDefault();
+			onRightClick(elementRightClick(e, elements, tileSize, state));
+		}
+
 		if(onRightClick && state.canvas) {
 			state.canvas.addEventListener('contextmenu', onRightClickEvent);
 			return state.canvas.removeEventListener('contextmenu', onRightClickEvent);
@@ -120,9 +119,12 @@ export default function Canvas2D({
 	useEffect(() => {
 		let shouldRender = true;
 		function render() {
-			if(onFrame) {
-				onFrame();
+			if(!shouldRender) {
+				return;
 			}
+
+			elements = onFrame();
+			const sortedElements = sortElements(elements);
 
 			if(state.context) {
 				renderCanvas(
@@ -135,9 +137,7 @@ export default function Canvas2D({
 				);
 			}
 
-			if(shouldRender) {
-				window.requestAnimationFrame(render);
-			}
+			window.requestAnimationFrame(render);
 		}
 		window.requestAnimationFrame(render);
 
