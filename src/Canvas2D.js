@@ -11,7 +11,7 @@ import sortElements from './functions/sortElements';
 
 import renderCanvas from './render/renderCanvas';
 
-let elements = [];
+const elements = {};
 
 export default function Canvas2D({
 	width,
@@ -34,6 +34,10 @@ export default function Canvas2D({
 	deltaTop=0,
 	...otherProps
 }) {
+	if(!elements[otherProps.id]) {
+		elements[otherProps.id] = [];
+	}
+
 	// Hooks
 	const [state, setState] = useState({});
 	const canvasRef = useCallback((canvas) => {
@@ -83,7 +87,7 @@ export default function Canvas2D({
 	// Render
 	let onMouseMove = null;
 	if(trackMouseMove) {
-		onMouseMove = (e) => mouseMove(e, elements, tileSize, state, setState, lockXAxis, lockYAxis, dragObjects, onElementMoved, onHover);
+		onMouseMove = (e) => mouseMove(e, elements[otherProps.id], tileSize, state, setState, lockXAxis, lockYAxis, dragObjects, onElementMoved, onHover);
 	}
 
 	const onWheelFn = (e) => {
@@ -98,7 +102,7 @@ export default function Canvas2D({
 
 	let onClickFn = null;
 	if(onClick) {
-		onClickFn = (e) => onClick(elementClick(e, elements, tileSize, state));
+		onClickFn = (e) => onClick(elementClick(e, elements[otherProps.id], tileSize, state));
 	}
 
 
@@ -106,7 +110,7 @@ export default function Canvas2D({
 	useEffect(() => {
 		function onRightClickEvent(e) {
 			e.preventDefault();
-			onRightClick(elementRightClick(e, elements, tileSize, state));
+			onRightClick(elementRightClick(e, elements[otherProps.id], tileSize, state));
 		}
 
 		if(onRightClick && state.canvas) {
@@ -123,8 +127,8 @@ export default function Canvas2D({
 				return;
 			}
 
-			elements = onFrame();
-			const sortedElements = sortElements(elements);
+			elements[otherProps.id] = onFrame();
+			const sortedElements = sortElements(elements[otherProps.id]);
 
 			if(state.context) {
 				renderCanvas(
