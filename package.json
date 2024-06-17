@@ -27,8 +27,8 @@
     "react": "^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.4.5",
-    "@testing-library/react": "^15.0.7",
+    "@testing-library/jest-dom": "^6.4.8",
+    "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
     "canvas": "^2.11.2",
     "cross-env": "^7.0.3",
@@ -38,7 +38,7 @@
     "npm-run-all": "^4.1.5",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-normalize": "^10.0.1",
-    "postcss-preset-env": "^9.5.11",
+    "postcss-preset-env": "^9.6.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "^5.0.1"
@@ -47,8 +47,8 @@
     "dist"
   ],
   "dependencies": {
-    "@babel/eslint-parser": "^7.24.5",
-    "@babel/preset-react": "^7.24.1",
+    "@babel/eslint-parser": "^7.25.1",
+    "@babel/preset-react": "^7.24.7",
     "eslint-config-standard-react": "^13.0.0"
   }
 }
