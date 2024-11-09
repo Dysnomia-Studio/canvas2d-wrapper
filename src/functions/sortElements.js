@@ -20,7 +20,11 @@ export default function sortElements(elements) {
 			return 1;
 		}
 
-		return -1;
+		if(a.fill > b.fill) {
+			return -1;
+		}
+
+		return 0;
 	});
 
 	return elements;
