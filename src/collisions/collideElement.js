@@ -73,5 +73,5 @@ export default function collideElement(e, elements, left, top, tileSize, zoom) {
 		return 0;
 	});
 
-	return validElements[0];
+	return validElements[validElements.length - 1];
 }
