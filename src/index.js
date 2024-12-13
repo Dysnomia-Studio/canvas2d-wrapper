@@ -8,6 +8,7 @@ import useMousePosition from './hooks/useMousePosition';
 import useWindowDimensions from './hooks/useWindowDimensions';
 
 import CanvasImage from './shapes/CanvasImage';
+import CanvasObject from './shapes/CanvasObject';
 import Circle from './shapes/Circle';
 import Polygon from './shapes/Polygon';
 import Rect from './shapes/Rect';
@@ -23,6 +24,7 @@ export {
 	useWindowDimensions,
 
 	CanvasImage,
+	CanvasObject,
 	Circle,
 	Polygon,
 	Rect,
