@@ -44,7 +44,8 @@
     "react-scripts": "^5.0.1"
   },
   "files": [
-    "dist"
+    "dist",
+    "./canvas2d-wrapper.d.ts"
   ],
   "dependencies": {
     "@babel/eslint-parser": "^7.25.9",
