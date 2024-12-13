@@ -22,7 +22,7 @@ export default class CanvasImage extends CanvasObject {
 		this.src = src;
 	}
 
-	crop(x, y, width, height) {
+	crop(sx, swidth, sheight) {
 		this.sx = sx;
 		this.sy = sx;
 		this.swidth = swidth;
