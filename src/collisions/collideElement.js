@@ -9,64 +9,67 @@ export default function collideElement(e, elements, left, top, tileSize, zoom) {
 
 	const validElements = [];
 
-	for(const element of elements) {
+	for (const element of elements) {
 		const x = element.x * localTileSize;
 		const y = element.y * localTileSize;
 
-		switch(element.constructorName) {
+		switch (element.constructorName) {
 			case 'Rect':
 			case 'CanvasImage':
-				if(inRect(element, x, y, left, top, localTileSize)) {
+				if (inRect(element, x, y, left, top, localTileSize)) {
 					validElements.push({
 						id: element.id,
 						element,
 						originalEvent: e,
+						posOnMap: { x: element.x, y: element.y }
 					});
 				}
 				break;
 			case 'Circle':
-				if(inCircle(element, x, y, left, top, localTileSize)) {
+				if (inCircle(element, x, y, left, top, localTileSize)) {
 					validElements.push({
 						id: element.id,
 						element,
 						originalEvent: e,
+						posOnMap: { x: element.x, y: element.y }
 					});
 				}
 				break;
 			case 'Polygon':
-				if(inPoly(element, x, y, left, top, localTileSize)) {
+				if (inPoly(element, x, y, left, top, localTileSize)) {
 					validElements.push({
 						id: element.id,
 						element,
 						originalEvent: e,
+						posOnMap: { x: element.x, y: element.y }
 					});
 				}
 				break;
 		}
 	}
 
-	if(validElements.length === 0) {
+	if (validElements.length === 0) {
 		return null;
 	}
 
-	if(validElements.length === 1) {
+	if (validElements.length === 1) {
 		return validElements[0];
 	}
 
 	validElements.sort((a, b) => {
-		if(a.zIndex > b.zIndex) {
+		if (a.zIndex > b.zIndex) {
 			return 1;
 		}
 
-		if(a.zIndex < b.zIndex) {
+		if (a.zIndex < b.zIndex) {
 			return -1;
 		}
 
-		if(a.id > b.id) {
+		if (a.id > b.id) {
 			return 1;
 		}
 
-		if(a.id < b.id) {
+		if (a.id < b.id) {
 			return -1;
 		}
 

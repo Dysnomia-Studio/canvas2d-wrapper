@@ -13,20 +13,20 @@ export default function mouseMove(event, elements, tileSize, props, setProps, lo
 	const left = -props.left - props.deltaLeft + event.pageX - event.target.offsetLeft;
 	const top = -props.top - props.deltaTop + event.pageY - event.target.offsetTop;
 
-	if(event.nativeEvent.buttons === LEFT_BUTTON && !!props.prevX) {
+	if (event.nativeEvent.buttons === LEFT_BUTTON && !!props.prevX) {
 		let moved = false;
-		if(dragObjects) {
-			if(selectedObject === null) {
+		if (dragObjects) {
+			if (selectedObject === null) {
 				selectedObject = collideElement(event, elements, left, top, tileSize, props.zoom);
 			}
 
-			if(selectedObject !== null && selectedObject.element.draggable) {
+			if (selectedObject !== null && selectedObject.element.draggable) {
 				selectedObject.element.x = (-props.left - props.deltaLeft) + (event.clientX - props.boundingClientRect.left) - selectedObject.element.width / 2;
 				selectedObject.element.y = (-props.top - props.deltaLeft) + (event.clientY - props.boundingClientRect.top) - selectedObject.element.height / 2;
 
 				moved = true;
 
-				if(onElementMoved) {
+				if (onElementMoved) {
 					onElementMoved(
 						selectedObject,
 						(event.screenX - props.prevX),
@@ -34,24 +34,24 @@ export default function mouseMove(event, elements, tileSize, props, setProps, lo
 					);
 				}
 
-				if(onHover) {
+				if (onHover) {
 					onHover(null);
 				}
 			}
 		}
 
-		if(!moved) {
+		if (!moved) {
 			// Lock Axis
-			if(!lockXAxis) {
+			if (!lockXAxis) {
 				newProps.left += (event.screenX - props.prevX);
 			}
 
-			if(!lockYAxis) {
+			if (!lockYAxis) {
 				newProps.top += (event.screenY - props.prevY);
 			}
 		}
 
-		if(event.nativeEvent.pointerType !== 'mouse') {
+		if (event.nativeEvent.pointerType !== 'mouse') {
 			unselectTimeoutId = setTimeout(() => {
 				selectedObject = null;
 				setProps({
@@ -62,7 +62,7 @@ export default function mouseMove(event, elements, tileSize, props, setProps, lo
 			}, UNSELECT_TIMEOUT_MS);
 		}
 	} else {
-		if(onHover) {
+		if (onHover) {
 			onHover(collideElement(event, elements, left, top, tileSize, props.zoom), { x: left, y: top });
 		}
 

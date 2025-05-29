@@ -5,7 +5,7 @@ export default function elementRightClick(e, elements, tileSize, state) {
 	const top = -state.top - state.deltaTop + e.pageY - e.target.offsetTop;
 
 	const clickedElement = collideElement(e, elements, left, top, tileSize, state.zoom);
-	if(clickedElement !== null) {
+	if (clickedElement !== null) {
 		return clickedElement;
 	}
 
@@ -13,5 +13,6 @@ export default function elementRightClick(e, elements, tileSize, state) {
 		id: null,
 		element: null,
 		originalEvent: e,
+		posOnMap: { x: Math.floor(left / tileSize / state.zoom), y: Math.floor(top / tileSize / state.zoom) }
 	};
 }

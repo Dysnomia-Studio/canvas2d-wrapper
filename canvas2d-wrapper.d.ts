@@ -15,6 +15,7 @@ declare module "canvas2d-wrapper" {
 		id: string | null,
 		element: CanvasObject | null,
 		originalEvent: Event,
+		posOnMap: Position2D
 	};
 
 	// React component
