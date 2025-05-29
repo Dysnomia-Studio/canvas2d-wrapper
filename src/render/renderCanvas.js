@@ -1,20 +1,23 @@
-import Circle from '../shapes/Circle';
 import CanvasImage from '../shapes/CanvasImage';
-import Rect from '../shapes/Rect';
+import Circle from '../shapes/Circle';
+import LinePath from '../shapes/LinePath';
 import Polygon from '../shapes/Polygon';
+import Rect from '../shapes/Rect';
 
 import calcTileSize from '../functions/calcTileSize';
 
 import renderCircle from './renderCircle';
 import renderImage from './renderImage';
-import renderRect from './renderRect';
+import renderLinePath from './renderLinePath';
 import renderPolygon from './renderPolygon';
+import renderRect from './renderRect';
 
 const renderFn = {
 	[(new Circle({})).constructorName]: renderCircle,
 	[(new CanvasImage({})).constructorName]: renderImage,
 	[(new Rect({})).constructorName]: renderRect,
 	[(new Polygon({ points: [{}] })).constructorName]: renderPolygon,
+	[(new LinePath({ points: [{}] })).constructorName]: renderLinePath,
 };
 
 export default function renderCanvas(
@@ -35,8 +38,8 @@ export default function renderCanvas(
 
 	context.clearRect(0, 0, width, height);
 
-	for(const element of elements) {
-		if(
+	for (const element of elements) {
+		if (
 			element.fill !== prevFillStyle &&
 			typeof element.fill !== 'undefined'
 		) {
@@ -44,7 +47,7 @@ export default function renderCanvas(
 			prevFillStyle = element.fill;
 		}
 
-		if(
+		if (
 			element.stroke !== prevStrokeStyle &&
 			typeof element.stroke !== 'undefined'
 		) {
@@ -53,7 +56,7 @@ export default function renderCanvas(
 		}
 
 		const type = element.constructorName;
-		if(renderFn[type]) {
+		if (renderFn[type]) {
 			renderFn[type](context, element, left, top, localTileSize);
 		} else {
 			throw new Error('Unsupported shape type:' + type);

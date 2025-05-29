@@ -1,4 +1,5 @@
-export default function renderPolygon(context, element, left, top, localTileSize) {
+export default function renderLinePath(context, element, left, top, localTileSize) {
+	const defaultLineWidth = context.lineWidth;
 	context.beginPath();
 
 	context.moveTo(
@@ -13,15 +14,8 @@ export default function renderPolygon(context, element, left, top, localTileSize
 		);
 	}
 
-	context.lineTo(
-		left + element.points[0].x * localTileSize,
-		top + element.points[0].y * localTileSize,
-	);
+	context.lineWidth = element.lineWidth;
+	context.stroke();
 
-	if (element.fill) {
-		context.fill();
-	}
-	if (element.stroke) {
-		context.stroke();
-	}
+	context.lineWidth = defaultLineWidth;
 }

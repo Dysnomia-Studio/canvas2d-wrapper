@@ -10,22 +10,17 @@ import useWindowDimensions from './hooks/useWindowDimensions';
 import CanvasImage from './shapes/CanvasImage';
 import CanvasObject from './shapes/CanvasObject';
 import Circle from './shapes/Circle';
+import LinePath from './shapes/LinePath';
 import Polygon from './shapes/Polygon';
 import Rect from './shapes/Rect';
 
 export {
-	Canvas2D,
-
-	preloadImages,
-
-	useGamepad,
-	useKeyboard,
-	useMousePosition,
-	useWindowDimensions,
-
-	CanvasImage,
+	Canvas2D, CanvasImage,
 	CanvasObject,
 	Circle,
-	Polygon,
-	Rect,
+	LinePath,
+	Polygon, preloadImages, Rect, useGamepad,
+	useKeyboard,
+	useMousePosition,
+	useWindowDimensions
 };

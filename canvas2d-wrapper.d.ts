@@ -118,23 +118,30 @@ declare module "canvas2d-wrapper" {
 		radius: number;
 	}
 
+	export class LinePath extends ColoredCanvasObject {
+		constructor({ id, points, stroke, zIndex }: {
+			id: string,
+			lineWidth: number,
+			points: Position2D[],
+			stroke: string,
+			zIndex?: number,
+		});
+
+		points: Position2D[];
+		lineWidth: number;
+	}
+
 	export class Polygon extends ColoredCanvasObject {
 		constructor({ id, points, width, height, src, zIndex, draggable }: {
 			id: string,
-			points: {
-				x: number,
-				y: number,
-			}[],
+			points: Position2D[],
 			fill?: string,
 			stroke?: string,
 			zIndex?: number,
 			draggable?: boolean,
 		});
 
-		points: {
-			x: number,
-			y: number,
-		}[];
+		points: Position2D[];
 	}
 
 	export class Rect extends ColoredCanvasObject {
