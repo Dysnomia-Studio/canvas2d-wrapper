@@ -125,10 +125,14 @@ declare module "canvas2d-wrapper" {
 			points: Position2D[],
 			stroke: string,
 			zIndex?: number,
+			smoothCorners?: boolean,
+			smoothCornersRadius?: number,
 		});
 
 		points: Position2D[];
 		lineWidth: number;
+		smoothCorners?: boolean;
+		smoothCornersRadius?: number;
 	}
 
 	export class Polygon extends ColoredCanvasObject {

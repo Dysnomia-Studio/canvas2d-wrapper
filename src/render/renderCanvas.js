@@ -15,9 +15,9 @@ import renderRect from './renderRect';
 const renderFn = {
 	[(new Circle({})).constructorName]: renderCircle,
 	[(new CanvasImage({})).constructorName]: renderImage,
-	[(new Rect({})).constructorName]: renderRect,
-	[(new Polygon({ points: [{}] })).constructorName]: renderPolygon,
 	[(new LinePath({ points: [{}] })).constructorName]: renderLinePath,
+	[(new Polygon({ points: [{}] })).constructorName]: renderPolygon,
+	[(new Rect({})).constructorName]: renderRect,
 };
 
 export default function renderCanvas(

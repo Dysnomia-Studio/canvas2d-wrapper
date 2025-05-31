@@ -9,12 +9,16 @@ export default class LinePath extends ColoredCanvasObject {
 	 * @param      {string}      	stroke 	DOMString, CanvasGradient or CanvsPattern representing what should be put in CanvasRenderingContext2D.strokeStyle
 	 * @param      {number}      	zIndex 	Stack order of the element
 	 * @param 	   {number} 		lineWidth Width of the stroked line
+	 * @param 	   {number} 		smoothCorners  Should we have smooth corners ?
+	 * @param 	   {number} 		smoothCornersRadius  Radius of smoothed corners
 	 */
-	constructor({ id, lineWidth, points, stroke, zIndex }) {
+	constructor({ id, lineWidth, points, stroke, zIndex, smoothCorners, smoothCornersRadius }) {
 		super(id, points[0].x, points[0].y, 'none', stroke, zIndex, false);
 
 		this.points = points;
 		this.lineWidth = lineWidth;
+		this.smoothCorners = smoothCorners;
+		this.smoothCornersRadius = smoothCornersRadius;
 	}
 
 	get constructorName() {
