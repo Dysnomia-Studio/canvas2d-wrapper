@@ -146,7 +146,7 @@ export default function Canvas2D({
 		window.requestAnimationFrame(render);
 
 		return () => { shouldRender = false; };
-	}, [state.context, onFrame]);
+	}, [state.left, state.top, state.deltaLeft, state.deltaTop, state.zoom, state.context, onFrame]);
 
 	return (
 		<canvas
