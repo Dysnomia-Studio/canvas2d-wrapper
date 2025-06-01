@@ -41,6 +41,10 @@ declare module "canvas2d-wrapper" {
 		// Additional props
 		id: string,
 		className?: string,
+		showMinimap?: boolean,
+		minimapWidth?: number,
+		minimapHeight?: number,
+		minimapFilter?: (e: CanvasObject) => boolean,
 	};
 
 	export function Canvas2D(props: Canvas2DProps);

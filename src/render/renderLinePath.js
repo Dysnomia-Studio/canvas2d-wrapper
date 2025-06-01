@@ -60,7 +60,7 @@ export default function renderLinePath(
 		}
 	}
 
-	context.lineWidth = element.lineWidth;
+	context.lineWidth = element.lineWidth * localTileSize;
 	context.stroke();
 	context.lineWidth = defaultLineWidth;
 }
