@@ -3,6 +3,7 @@ import calcTileSize from '../functions/calcTileSize';
 import inCircle from './inCircle';
 import inPoly from './inPoly';
 import inRect from './inRect';
+import onLinePath from './onLinePath';
 
 export default function collideElement(e, elements, left, top, tileSize, zoom) {
 	const localTileSize = calcTileSize(tileSize, zoom);
@@ -10,6 +11,10 @@ export default function collideElement(e, elements, left, top, tileSize, zoom) {
 	const validElements = [];
 
 	for (const element of elements) {
+		if (!element.hasCollisions) {
+			continue;
+		}
+
 		const x = element.x * localTileSize;
 		const y = element.y * localTileSize;
 
@@ -37,6 +42,16 @@ export default function collideElement(e, elements, left, top, tileSize, zoom) {
 				break;
 			case 'Polygon':
 				if (inPoly(element, x, y, left, top, localTileSize)) {
+					validElements.push({
+						id: element.id,
+						element,
+						originalEvent: e,
+						posOnMap: { x: element.x, y: element.y }
+					});
+				}
+				break;
+			case 'LinePath': 
+				if (onLinePath(element, left, top, localTileSize)) {
 					validElements.push({
 						id: element.id,
 						element,

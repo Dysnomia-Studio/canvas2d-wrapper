@@ -11,9 +11,10 @@ export default class Circle extends ColoredCanvasObject {
 	 * @param      {string}      	fill 	DOMString, CanvasGradient or CanvsPattern representing what should be put in CanvasRenderingContext2D.fillStyle
 	 * @param      {string}      	stroke 	DOMString, CanvasGradient or CanvsPattern representing what should be put in CanvasRenderingContext2D.strokeStyle
 	 * @param      {number}      	zIndex 	Stack order of the element
+	 * @param      {boolean}      	hasCollisions 	Does the object have collisions ?
 	 */
-	constructor({ id, x, y, radius, fill, stroke, zIndex, draggable }) {
-		super(id, x, y, fill, stroke, zIndex, draggable);
+	constructor({ id, x, y, radius, fill, stroke, zIndex, draggable, hasCollisions }) {
+		super(id, x, y, fill, stroke, zIndex, draggable, hasCollisions);
 
 		this.radius = radius;
 	}

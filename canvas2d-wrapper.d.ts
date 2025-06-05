@@ -56,7 +56,8 @@ declare module "canvas2d-wrapper" {
 			x: number,
 			y: number,
 			zIndex?: number,
-			draggable?: boolean
+			draggable?: boolean,
+			hasCollisions?: boolean
 		);
 
 		get constructorName(): string;
@@ -69,6 +70,7 @@ declare module "canvas2d-wrapper" {
 		x: number;
 		y: number;
 		draggable: boolean | undefined;
+		hasCollisions: boolean | undefined;
 	}
 
 	export class ColoredCanvasObject extends CanvasObject {
@@ -81,7 +83,8 @@ declare module "canvas2d-wrapper" {
 			fill?: string,
 			stroke?: string,
 			zIndex?: number,
-			draggable?: boolean
+			draggable?: boolean,
+			hasCollisions?: boolean
 		);
 
 		fill: string | undefined;
@@ -98,6 +101,7 @@ declare module "canvas2d-wrapper" {
 			src: string,
 			zIndex?: number,
 			draggable?: boolean,
+			hasCollisions?: boolean
 		});
 
 		crop(sx: number, swidth: number, sheight: number);
@@ -117,6 +121,7 @@ declare module "canvas2d-wrapper" {
 			stroke?: string,
 			zIndex?: number,
 			draggable?: boolean,
+			hasCollisions?: boolean
 		});
 
 		radius: number;
@@ -131,6 +136,7 @@ declare module "canvas2d-wrapper" {
 			zIndex?: number,
 			smoothCorners?: boolean,
 			smoothCornersRadius?: number,
+			hasCollisions?: boolean
 		});
 
 		points: Position2D[];
@@ -147,6 +153,7 @@ declare module "canvas2d-wrapper" {
 			stroke?: string,
 			zIndex?: number,
 			draggable?: boolean,
+			hasCollisions?: boolean
 		});
 
 		points: Position2D[];
@@ -163,6 +170,7 @@ declare module "canvas2d-wrapper" {
 			stroke?: string,
 			zIndex?: number,
 			draggable?: boolean,
+			hasCollisions?: boolean
 		});
 
 		width: number;

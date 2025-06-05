@@ -11,9 +11,10 @@ export default class LinePath extends ColoredCanvasObject {
 	 * @param 	   {number} 		lineWidth Width of the stroked line
 	 * @param 	   {number} 		smoothCorners  Should we have smooth corners ?
 	 * @param 	   {number} 		smoothCornersRadius  Radius of smoothed corners
+	 * @param      {boolean}      	hasCollisions 	Does the object have collisions ?
 	 */
-	constructor({ id, lineWidth, points, stroke, zIndex, smoothCorners, smoothCornersRadius }) {
-		super(id, points[0].x, points[0].y, 'none', stroke, zIndex, false);
+	constructor({ id, lineWidth, points, stroke, zIndex, smoothCorners, smoothCornersRadius, hasCollisions }) {
+		super(id, points[0].x, points[0].y, 'none', stroke, zIndex, false, hasCollisions);
 
 		this.points = points;
 		this.lineWidth = lineWidth;
