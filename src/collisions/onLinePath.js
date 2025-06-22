@@ -1,11 +1,11 @@
-import inCircle from "./inCircle";
+import inCircle from './inCircle';
 
 export default function onLinePath(element, left, top, localTileSize) {
 	const radius = element.lineWidth;
 
 	// Starting point in Circle
 	if (inCircle(
-		{ radius }, 
+		{ radius },
 		element.points[0].x * localTileSize,
 		element.points[0].y * localTileSize,
 		left,
@@ -17,7 +17,7 @@ export default function onLinePath(element, left, top, localTileSize) {
 
 	// Ending point in Circle
 	if (inCircle(
-		{ radius }, 
+		{ radius },
 		element.points[element.points.length - 1].x * localTileSize,
 		element.points[element.points.length - 1].y * localTileSize,
 		left,
@@ -26,7 +26,6 @@ export default function onLinePath(element, left, top, localTileSize) {
 	)) {
 		return true;
 	}
-
 
 
 	// Line collision
@@ -48,7 +47,7 @@ export default function onLinePath(element, left, top, localTileSize) {
 
 		// Dot product of the line and Circle
 		const dot = (((left - from.x) * (to.x - from.x)) + ((top - from.y) * (to.y - from.y))) / Math.pow(length, 2);
-		
+
 		// Closest point on the line
 		const point = {
 			x: from.x + (dot * (to.x - from.x)),
@@ -56,7 +55,7 @@ export default function onLinePath(element, left, top, localTileSize) {
 		};
 
 		if (inCircle(
-			{ radius }, 
+			{ radius },
 			point.x,
 			point.y,
 			left,

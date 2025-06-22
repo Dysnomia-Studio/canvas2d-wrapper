@@ -50,7 +50,7 @@ export default function collideElement(e, elements, left, top, tileSize, zoom) {
 					});
 				}
 				break;
-			case 'LinePath': 
+			case 'LinePath':
 				if (onLinePath(element, left, top, localTileSize)) {
 					validElements.push({
 						id: element.id,

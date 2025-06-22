@@ -1,7 +1,7 @@
 export default function calcRatioForMinimap(elements, width, height, minimapWidth, minimapHeight, tileSize) {
 	const elementsX = elements.map((e) => {
 		if (Array.isArray(e.points)) {
-			return e.points.map(p => p.x * tileSize)
+			return e.points.map(p => p.x * tileSize);
 		}
 
 		return [e.x * tileSize];
@@ -12,7 +12,7 @@ export default function calcRatioForMinimap(elements, width, height, minimapWidt
 
 	const elementsY = elements.map((e) => {
 		if (Array.isArray(e.points)) {
-			return e.points.map(p => p.y * tileSize)
+			return e.points.map(p => p.y * tileSize);
 		}
 
 		return [e.y * tileSize];
