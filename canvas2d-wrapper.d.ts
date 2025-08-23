@@ -181,7 +181,7 @@ declare module "canvas2d-wrapper" {
 	export function preloadImages(images: string[]): void;
 
 	// Hooks
-	export function useGamepad(): { [id: string]: string };
+	export function useGamepad(): Gamepad;
 	export function useKeyboard(): { [id: string]: string };
 	export function useMousePosition(): {
 		x: number | null,
@@ -191,4 +191,91 @@ declare module "canvas2d-wrapper" {
 		width: number,
 		height: number,
 	};
+
+
+
+	// Gamepad
+	/**
+	 * Represents a single gamepad device.
+	 */
+	interface Gamepad {
+		/** Unique identifier for the controller (usually the model name). */
+		readonly id: string;
+
+		/** Index of the gamepad in the array returned by getGamepads(). */
+		readonly index: number;
+
+		/** True if the gamepad is currently connected. */
+		readonly connected: boolean;
+
+		/** Timestamp (in milliseconds) of the last update. */
+		readonly timestamp: number;
+
+		/** Mapping type – typically "standard" or an empty string for custom layouts. */
+		readonly mapping: string;
+
+		/** Array of button states (pressed, touched, value). */
+		readonly buttons: readonly GamepadButton[];
+
+		/** Array of axis values ranging from -1.0 to +1.0. */
+		readonly axes: readonly number[];
+
+		/** Optional pose information (e.g., for VR controllers). */
+		readonly pose?: GamepadPose | null;
+
+		/** Optional haptic actuators (vibration). */
+		readonly hapticActuators?: readonly GamepadHapticActuator[] | null;
+	}
+
+	/**
+	 * Represents a single button on a gamepad.
+	 */
+	interface GamepadButton {
+		/** Normalized pressure (0.0–1.0). */
+		readonly value: number;
+
+		/** True if the button is currently pressed. */
+		readonly pressed: boolean;
+
+		/** True if the button is being touched (may be same as pressed). */
+		readonly touched: boolean;
+	}
+
+	/**
+	 * Pose information for motion‑tracking controllers.
+	 */
+	interface GamepadPose {
+		/** Position vector `[x, y, z]` in meters (if available). */
+		readonly position?: readonly number[] | null;
+
+		/** Linear velocity `[vx, vy, vz]` in m/s (if available). */
+		readonly linearVelocity?: readonly number[] | null;
+
+		/** Linear acceleration `[ax, ay, az]` in m/s² (if available). */
+		readonly linearAcceleration?: readonly number[] | null;
+
+		/** Orientation quaternion `[x, y, z, w]` (if available). */
+		readonly orientation?: readonly number[] | null;
+
+		/** Angular velocity `[wx, wy, wz]` in rad/s (if available). */
+		readonly angularVelocity?: readonly number[] | null;
+
+		/** Angular acceleration `[αx, αy, αz]` in rad/s² (if available). */
+		readonly angularAcceleration?: readonly number[] | null;
+
+		/** Indicates whether the pose data is reliable. */
+		readonly hasOrientation: boolean;
+		readonly hasPosition: boolean;
+	}
+
+	/**
+	 * Haptic actuator for vibration feedback.
+	 */
+	interface GamepadHapticActuator {
+		/** The type of actuator (e.g., "vibration"). */
+		readonly type: string;
+
+		/** Duration in milliseconds, strong magnitude (0–1), and optional weak magnitude. */
+		pulse(duration: number, strongMagnitude: number, weakMagnitude?: number): Promise<boolean>;
+	}
 }
