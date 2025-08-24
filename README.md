@@ -1,6 +1,6 @@
 # canvas2d-wrapper
 
-> A React Wrapper to use HTML5 canvas with mouse move and zoom abilities.
+> A React Wrapper to draw on an HTML5 canvas with mouse move and zoom abilities.
 
 [![NPM](https://img.shields.io/npm/v/canvas2d-wrapper.svg)](https://www.npmjs.com/package/canvas2d-wrapper)  
 [![Reliability Rating](https://sonar.dysnomia.studio/api/project_badges/measure?project=canvas2d-wrapper&metric=reliability_rating)](https://sonar.dysnomia.studio/dashboard?id=canvas2d-wrapper) [![Maintainability Rating](https://sonar.dysnomia.studio/api/project_badges/measure?project=canvas2d-wrapper&metric=sqale_rating)](https://sonar.dysnomia.studio/dashboard?id=canvas2d-wrapper) [![Security Rating](https://sonar.dysnomia.studio/api/project_badges/measure?project=canvas2d-wrapper&metric=security_rating)](https://sonar.dysnomia.studio/dashboard?id=canvas2d-wrapper)  
