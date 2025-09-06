@@ -1,8 +1,12 @@
 import collideElement from '../collisions/collideElement';
+import computeEventPositions from './computeEventPositions';
 
 export default function elementClick(e, elements, tileSize, state) {
-	const left = -state.left - state.deltaLeft + e.pageX - e.target.offsetLeft;
-	const top = -state.top - state.deltaTop + e.pageY - e.target.offsetTop;
+	const {
+		left,
+		top,
+		posOnMap
+	} = computeEventPositions(state, e, tileSize);
 
 	const clickedElement = collideElement(e, elements, left, top, tileSize, state.zoom);
 	if (clickedElement !== null) {
@@ -13,6 +17,6 @@ export default function elementClick(e, elements, tileSize, state) {
 		id: null,
 		element: null,
 		originalEvent: e,
-		posOnMap: { x: Math.floor(left / tileSize / state.zoom), y: Math.floor(top / tileSize / state.zoom) }
+		posOnMap
 	};
 }

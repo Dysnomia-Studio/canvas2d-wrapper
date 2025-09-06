@@ -1,4 +1,5 @@
 import collideElement from '../collisions/collideElement';
+import computeEventPositions from './computeEventPositions';
 
 const LEFT_BUTTON = 1;
 let selectedObject = null;
@@ -10,8 +11,11 @@ export default function mouseMove(event, elements, tileSize, props, setProps, lo
 		...props,
 	};
 
-	const left = -props.left - props.deltaLeft + event.pageX - event.target.offsetLeft;
-	const top = -props.top - props.deltaTop + event.pageY - event.target.offsetTop;
+	const {
+		left,
+		top,
+		posOnMap
+	} = computeEventPositions(props, event, tileSize);
 
 	if (event.nativeEvent.buttons === LEFT_BUTTON && !!props.prevX) {
 		let moved = false;
@@ -35,7 +39,7 @@ export default function mouseMove(event, elements, tileSize, props, setProps, lo
 				}
 
 				if (onHover) {
-					onHover(null);
+					onHover(null, posOnMap);
 				}
 			}
 		}
@@ -63,7 +67,7 @@ export default function mouseMove(event, elements, tileSize, props, setProps, lo
 		}
 	} else {
 		if (onHover) {
-			onHover(collideElement(event, elements, left, top, tileSize, props.zoom), { x: left, y: top });
+			onHover(collideElement(event, elements, left, top, tileSize, props.zoom), posOnMap);
 		}
 
 		selectedObject = null;
