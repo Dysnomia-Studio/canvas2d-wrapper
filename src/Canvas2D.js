@@ -162,7 +162,7 @@ export default function Canvas2D({
 
 			if (showMinimap && state.minimapContext) {
 				const filteredElementsList = sortedElements.filter(minimapFilter);
-				const ratio = calcRatioForMinimap(filteredElementsList, width, height, minimapWidth, minimapHeight, tileSize * state.zoom);
+				const ratio = calcRatioForMinimap(filteredElementsList, width, height, minimapWidth, minimapHeight, tileSize);
 
 				renderCanvas(
 					state.minimapContext,
