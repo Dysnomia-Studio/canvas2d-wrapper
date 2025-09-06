@@ -181,6 +181,17 @@ export default function Canvas2D({
 		return () => { shouldRender = false; };
 	}, [state.left, state.top, state.deltaLeft, state.deltaTop, state.zoom, state.context, onFrame]);
 
+	// On width/height change: reset view and setState
+	useEffect(() => {
+		setState((s) => ({
+			...s,
+			left: width / 2,
+			top: height / 2,
+			width,
+			height,
+		}));
+	}, [width, height]);
+
 	return (
 		<>
 			<canvas
