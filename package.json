@@ -1,6 +1,6 @@
 {
   "name": "canvas2d-wrapper",
-  "version": "1.12.1",
+  "version": "1.13.0",
   "description": "A React Wrapper to use HTML5 canvas with mouse move and zoom abilities.",
   "author": "Elanis",
   "license": "MIT",
