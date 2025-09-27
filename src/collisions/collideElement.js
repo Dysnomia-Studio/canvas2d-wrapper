@@ -21,7 +21,7 @@ export default function collideElement(e, elements, left, top, tileSize, zoom) {
 		switch (element.constructorName) {
 			case 'Rect':
 			case 'CanvasImage':
-				if (inRect(element, x, y, left, top, localTileSize)) {
+				if (inRect(element, x, y, left, top, localTileSize, element.rotation)) {
 					validElements.push({
 						id: element.id,
 						element,
@@ -91,5 +91,5 @@ export default function collideElement(e, elements, left, top, tileSize, zoom) {
 		return 0;
 	});
 
-	return validElements[validElements.length - 1];
+	return validElements[0];
 }

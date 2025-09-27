@@ -14,13 +14,15 @@ export default class CanvasImage extends CanvasObject {
 	 * @param      {string}      	src 	Image source link
 	 * @param      {number}      	zIndex 	Stack order of the element
 	 * @param      {boolean}      	hasCollisions 	Does the object have collisions ?
+	 * @param      {number}      	rotation The rotation in radians
 	 */
-	constructor({ id, x, y, width, height, src, zIndex, draggable, hasCollisions }) {
+	constructor({ id, x, y, width, height, src, zIndex, draggable, hasCollisions, rotation }) {
 		super(id, x, y, zIndex, draggable, hasCollisions);
 
 		this.width = width;
 		this.height = height;
 		this.src = src;
+		this.rotation = rotation;
 	}
 
 	crop(sx, swidth, sheight) {

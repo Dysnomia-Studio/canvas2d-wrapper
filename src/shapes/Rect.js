@@ -13,12 +13,14 @@ export default class Rect extends ColoredCanvasObject {
 	 * @param      {string}      	stroke 	DOMString, CanvasGradient or CanvsPattern representing what should be put in CanvasRenderingContext2D.strokeStyle
 	 * @param      {number}      	zIndex 	Stack order of the element
 	 * @param      {boolean}      	hasCollisions 	Does the object have collisions ?
+	 * @param      {number}      	rotation The rotation in radians
 	 */
-	constructor({ id, x, y, width, height, fill, stroke, zIndex, draggable, hasCollisions }) {
+	constructor({ id, x, y, width, height, fill, stroke, zIndex, draggable, hasCollisions, rotation }) {
 		super(id, x, y, fill, stroke, zIndex, draggable, hasCollisions);
 
 		this.width = width;
 		this.height = height;
+		this.rotation = rotation;
 	}
 
 	get constructorName() {

@@ -101,7 +101,8 @@ declare module "canvas2d-wrapper" {
 			src: string,
 			zIndex?: number,
 			draggable?: boolean,
-			hasCollisions?: boolean
+			hasCollisions?: boolean,
+			rotation?: number,
 		});
 
 		crop(sx: number, swidth: number, sheight: number);
@@ -109,6 +110,7 @@ declare module "canvas2d-wrapper" {
 		src: string;
 		width: number;
 		height: number;
+		rotation?: number;
 	}
 
 	export class Circle extends ColoredCanvasObject {
@@ -170,11 +172,13 @@ declare module "canvas2d-wrapper" {
 			stroke?: string,
 			zIndex?: number,
 			draggable?: boolean,
-			hasCollisions?: boolean
+			hasCollisions?: boolean,
+			rotation?: number,
 		});
 
 		width: number;
 		height: number;
+		rotation?: number;
 	}
 
 	// Functions
