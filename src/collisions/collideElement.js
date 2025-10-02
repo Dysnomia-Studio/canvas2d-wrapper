@@ -72,12 +72,12 @@ export default function collideElement(e, elements, left, top, tileSize, zoom) {
 	}
 
 	validElements.sort((a, b) => {
-		if (a.zIndex > b.zIndex) {
-			return 1;
+		if (a.element.zIndex > b.element.zIndex) {
+			return -1;
 		}
 
-		if (a.zIndex < b.zIndex) {
-			return -1;
+		if (a.element.zIndex < b.element.zIndex) {
+			return 1;
 		}
 
 		if (a.id > b.id) {
