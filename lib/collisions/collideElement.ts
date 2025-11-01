@@ -1,7 +1,9 @@
-import { Circle, LinePath, Polygon } from 'canvas2d-wrapper';
 import calcTileSize from '../functions/calcTileSize';
 import CanvasImage from '../shapes/CanvasImage';
 import CanvasObject from '../shapes/CanvasObject';
+import Circle from '../shapes/Circle';
+import LinePath from '../shapes/LinePath';
+import Polygon from '../shapes/Polygon';
 import CollideElementResultItem from '../types/CollideElementResultItem';
 import inCircle from './inCircle';
 import inPoly from './inPoly';
