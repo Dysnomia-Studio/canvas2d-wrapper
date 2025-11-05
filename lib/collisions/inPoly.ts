@@ -1,7 +1,6 @@
 import Polygon from "../shapes/Polygon";
 
-export default function inPoly(element: Polygon, _x: number, y: number, mouseX: number, mouseY: number, localTileSize: number) {
-	const j = element.points.length - 1;
+export default function inPoly(element: Polygon, mouseX: number, mouseY: number, localTileSize: number) {
 	let counter = false;
 
 	for (let i = 0; i < element.points.length; i++) {
@@ -13,10 +12,15 @@ export default function inPoly(element: Polygon, _x: number, y: number, mouseX: 
 			return true;
 		}
 
+		let j = i + 1;
+		if (j >= element.points.length) {
+			j = 0;
+		}
+
 		const jX = element.points[j].x * localTileSize;
 		const jY = element.points[j].y * localTileSize;
 
-		if ((iY > y) !== (jY > y)) {
+		if ((iY > mouseY) !== (jY > mouseY)) {
 			const slope = (mouseX - iX) * (jY - iY) - (jX - iX) * (mouseY - iY);
 
 			// On the boundary

@@ -47,7 +47,7 @@ export default function collideElement(e: Event, elements: CanvasObject[], left:
 				}
 				break;
 			case 'Polygon':
-				if (inPoly(element as Polygon, x, y, left, top, localTileSize)) {
+				if (inPoly(element as Polygon, left, top, localTileSize)) {
 					validElements.push({
 						id: element.id,
 						element,
