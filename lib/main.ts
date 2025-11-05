@@ -14,6 +14,11 @@ import LinePath from './shapes/LinePath';
 import Polygon from './shapes/Polygon';
 import Rect from './shapes/Rect';
 
+import Canvas2DProps from './types/Canvas2DProps';
+import CollideElementResultItem from './types/CollideElementResultItem';
+import Position2D from './types/Position2D';
+import Surface2D from './types/Surface2D';
+
 declare global {
 	var __canvas2dWrapper__: {
 		imgCache: {
@@ -30,6 +35,10 @@ export {
 	Polygon, preloadImages, Rect, useGamepad,
 	useKeyboard,
 	useMousePosition,
-	useWindowDimensions
+	useWindowDimensions,
+	type Canvas2DProps,
+	type CollideElementResultItem,
+	type Position2D,
+	type Surface2D
 };
 
