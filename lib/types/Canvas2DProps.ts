@@ -27,7 +27,8 @@ export type Canvas2DProps = {
 	showMinimap?: boolean,
 	minimapWidth?: number,
 	minimapHeight?: number,
-	minimapFilter?: (e: CanvasObject) => boolean,
+	minimapDisplayFilter?: (e: CanvasObject) => boolean,
+	minimapAutomaticZoomFilter?: (e: CanvasObject) => boolean,
 };
 
 export default Canvas2DProps;

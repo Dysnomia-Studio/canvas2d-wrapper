@@ -35,7 +35,8 @@ export default function Canvas2D({
 	showMinimap = false,
 	minimapWidth = 240,
 	minimapHeight = 120,
-	minimapFilter = (_e) => true,
+	minimapDisplayFilter = (_e) => true,
+	minimapAutomaticZoomFilter = (_e) => true,
 	...otherProps
 }: Canvas2DProps) {
 	if (!elements[otherProps.id]) {
@@ -166,8 +167,8 @@ export default function Canvas2D({
 			}
 
 			if (showMinimap && state.minimapContext) {
-				const filteredElementsList = sortedElements.filter(minimapFilter);
-				const ratio = calcRatioForMinimap(filteredElementsList, width, height, minimapWidth, minimapHeight, tileSize);
+				const filteredElementsList = sortedElements.filter(minimapDisplayFilter);
+				const ratio = calcRatioForMinimap(filteredElementsList.filter(minimapAutomaticZoomFilter), width, height, minimapWidth, minimapHeight, tileSize);
 
 				renderCanvas(
 					state.minimapContext,
