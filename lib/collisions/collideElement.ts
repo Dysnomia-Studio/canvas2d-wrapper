@@ -5,10 +5,10 @@ import Circle from '../shapes/Circle';
 import LinePath from '../shapes/LinePath';
 import Polygon from '../shapes/Polygon';
 import CollideElementResultItem from '../types/CollideElementResultItem';
-import inCircle from './inCircle';
-import inPoly from './inPoly';
-import inRect from './inRect';
-import onLinePath from './onLinePath';
+import pointInCircle from './pointInCircle';
+import pointInPolygon from './pointInPolygon';
+import pointInRectangle from './pointInRectangle';
+import pointOnLinePath from './pointOnLinePath';
 
 export default function collideElement(e: Event, elements: CanvasObject[], left: number, top: number, tileSize: number, zoom: number): CollideElementResultItem | null {
 	const localTileSize = calcTileSize(tileSize, zoom);
@@ -27,7 +27,11 @@ export default function collideElement(e: Event, elements: CanvasObject[], left:
 			case 'Rect':
 			case 'CanvasImage':
 				const image = element as CanvasImage;
-				if (inRect(image, x, y, left, top, localTileSize, image.rotation)) {
+				if (pointInRectangle(
+					x, y, image.width * localTileSize, image.height * localTileSize,
+					left, top, 
+					image.rotation
+				)) {
 					validElements.push({
 						id: image.id,
 						element,
@@ -37,7 +41,7 @@ export default function collideElement(e: Event, elements: CanvasObject[], left:
 				}
 				break;
 			case 'Circle':
-				if (inCircle(element as Circle, x, y, left, top, localTileSize)) {
+				if (pointInCircle(x, y, (element as Circle).radius * localTileSize, left, top)) {
 					validElements.push({
 						id: element.id,
 						element,
@@ -47,7 +51,7 @@ export default function collideElement(e: Event, elements: CanvasObject[], left:
 				}
 				break;
 			case 'Polygon':
-				if (inPoly(element as Polygon, left, top, localTileSize)) {
+				if (pointInPolygon((element as Polygon).points, left, top, localTileSize)) {
 					validElements.push({
 						id: element.id,
 						element,
@@ -57,7 +61,8 @@ export default function collideElement(e: Event, elements: CanvasObject[], left:
 				}
 				break;
 			case 'LinePath':
-				if (onLinePath(element as LinePath, left, top, localTileSize)) {
+				const lpElement = element as LinePath;
+				if (pointOnLinePath(lpElement.points, lpElement.lineWidth, left, top, localTileSize)) {
 					validElements.push({
 						id: element.id,
 						element,
