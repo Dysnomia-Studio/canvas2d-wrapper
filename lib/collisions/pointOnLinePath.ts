@@ -2,11 +2,13 @@ import Position2D from '../types/Position2D';
 import pointInCircle from './pointInCircle';
 
 export default function pointOnLinePath(points: Position2D[], lineWidth: number, pointX: number, pointY: number, tileSize: number = 1) {
+	const radius = lineWidth / 2;
+
 	// Starting point in Circle
 	if (pointInCircle(
 		points[0].x * tileSize,
 		points[0].y * tileSize,
-		lineWidth * tileSize,
+		radius * tileSize,
 		pointX,
 		pointY
 	)) {
@@ -17,7 +19,7 @@ export default function pointOnLinePath(points: Position2D[], lineWidth: number,
 	if (pointInCircle(
 		points[points.length - 1].x * tileSize,
 		points[points.length - 1].y * tileSize,
-		lineWidth * tileSize,
+		radius * tileSize,
 		pointX,
 		pointY
 	)) {
@@ -43,6 +45,9 @@ export default function pointOnLinePath(points: Position2D[], lineWidth: number,
 
 		// Dot product of the line and Circle
 		const dot = (((pointX - from.x) * (to.x - from.x)) + ((pointY - from.y) * (to.y - from.y))) / Math.pow(length, 2);
+		if (dot < 0 || dot > 1) { // Outside of the line, skip
+			continue;
+		}
 
 		// Closest point on the line
 		const point = {
@@ -53,7 +58,7 @@ export default function pointOnLinePath(points: Position2D[], lineWidth: number,
 		if (pointInCircle(
 			point.x,
 			point.y,
-			lineWidth * tileSize,
+			radius * tileSize,
 			pointX,
 			pointY
 		)) {
