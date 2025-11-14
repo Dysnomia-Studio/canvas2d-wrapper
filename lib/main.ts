@@ -8,6 +8,8 @@ import useGamepad from './hooks/useGamepad';
 import useKeyboard from './hooks/useKeyboard';
 import useMousePosition from './hooks/useMousePosition';
 import useWindowDimensions from './hooks/useWindowDimensions';
+import getLineLength from './maths/getLineLength';
+import segmentAngle from './maths/segmentAngle';
 import CanvasImage from './shapes/CanvasImage';
 import CanvasObject from './shapes/CanvasObject';
 import Circle from './shapes/Circle';
@@ -57,6 +59,11 @@ export {
 	useKeyboard,
 	useMousePosition,
 	useWindowDimensions
+};
+// Maths
+export {
+	getLineLength,
+	segmentAngle
 };
 // Types
 export {
