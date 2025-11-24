@@ -1,4 +1,5 @@
 import Canvas2D from './Canvas2D';
+import lineWithLine from './collisions/lineWithLine';
 import pointInCircle from './collisions/pointInCircle';
 import pointInPolygon from './collisions/pointInPolygon';
 import pointInRectangle from './collisions/pointInRectangle';
@@ -9,6 +10,7 @@ import useKeyboard from './hooks/useKeyboard';
 import useMousePosition from './hooks/useMousePosition';
 import useWindowDimensions from './hooks/useWindowDimensions';
 import getLineLength from './maths/getLineLength';
+import normalOnLine from './maths/normalOnLine';
 import segmentAngle from './maths/segmentAngle';
 import CanvasImage from './shapes/CanvasImage';
 import CanvasObject from './shapes/CanvasObject';
@@ -44,6 +46,7 @@ export {
 };
 // Collision algorithms
 export {
+	lineWithLine,
 	pointInCircle,
 	pointInPolygon,
 	pointInRectangle,
@@ -63,6 +66,7 @@ export {
 // Maths
 export {
 	getLineLength,
+	normalOnLine,
 	segmentAngle
 };
 // Types
