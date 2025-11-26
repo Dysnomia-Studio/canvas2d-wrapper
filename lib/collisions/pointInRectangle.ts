@@ -6,7 +6,7 @@ export default function pointInRectangle(
 ) {
 	let rotatedLeft = pointX;
 	let rotatedTop = pointY;
-	if (rotation) {
+	if (rotation !== undefined) {
 		const centerX = rectangleX + rectangleWidth / 2;
 		const centerY = rectangleY + rectangleHeight / 2;
 
