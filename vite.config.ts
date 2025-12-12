@@ -23,7 +23,7 @@ export default defineConfig({
 			external: ['react', 'react/jsx-runtime'],
 			input: Object.fromEntries(
 				glob.sync('lib/**/*.{ts,tsx}', {
-					ignore: ["lib/**/*.d.ts", "**/*.test.*"],
+					ignore: ["lib/**/*.d.ts", "**/*.test.*", "**/*.spec.*"],
 				}).map(file => [
 					// The name of the entry point
 					// lib/nested/foo.ts becomes nested/foo
