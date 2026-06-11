@@ -18,6 +18,7 @@ import Circle from './shapes/Circle';
 import LinePath from './shapes/LinePath';
 import Polygon from './shapes/Polygon';
 import Rect from './shapes/Rect';
+import Text from './shapes/Text';
 import Canvas2DProps from './types/Canvas2DProps';
 import CollideElementResultItem from './types/CollideElementResultItem';
 import Position2D from './types/Position2D';
@@ -42,7 +43,8 @@ export {
 	Circle,
 	LinePath,
 	Polygon,
-	Rect
+	Rect,
+	Text
 };
 // Collision algorithms
 export {
