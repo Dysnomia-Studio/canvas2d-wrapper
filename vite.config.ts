@@ -1,7 +1,7 @@
 import react from '@vitejs/plugin-react';
 import { glob } from 'glob';
+import { extname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { extname, relative, resolve } from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';

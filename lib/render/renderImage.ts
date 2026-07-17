@@ -1,6 +1,6 @@
 import CanvasImage from "../shapes/CanvasImage";
 
-window.__canvas2dWrapper__ = { imgCache: {} };
+globalThis.__canvas2dWrapper__ = { imgCache: {} };
 
 export default function renderImage(context: CanvasRenderingContext2D, element: CanvasImage, left: number, top: number, localTileSize: number) {
 	if (!__canvas2dWrapper__.imgCache[element.src]) {

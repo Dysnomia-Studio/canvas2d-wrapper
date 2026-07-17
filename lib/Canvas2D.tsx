@@ -41,7 +41,7 @@ export default function Canvas2D({
 	minimapDisplayFilter = (_e) => true,
 	minimapAutomaticZoomFilter = (_e) => true,
 	...otherProps
-}: Canvas2DProps) {
+}: Readonly<Canvas2DProps>) {
 	if (!elements[otherProps.id]) {
 		elements[otherProps.id] = [];
 	}
@@ -65,11 +65,11 @@ export default function Canvas2D({
 				return;
 			}
 
-			if (!smoothingQuality) {
-				context.imageSmoothingEnabled = false;
-			} else {
+			if (smoothingQuality) {
 				context.imageSmoothingEnabled = true;
 				context.imageSmoothingQuality = smoothingQuality;
+			} else {
+				context.imageSmoothingEnabled = false;
 			}
 
 			setState((s) => ({
@@ -201,9 +201,9 @@ export default function Canvas2D({
 				);
 			}
 
-			window.requestAnimationFrame(render);
+			globalThis.requestAnimationFrame(render);
 		}
-		window.requestAnimationFrame(render);
+		globalThis.requestAnimationFrame(render);
 
 		return () => { shouldRender = false; };
 	}, [state.left, state.top, state.deltaLeft, state.deltaTop, state.zoom, state.context, onFrame]);

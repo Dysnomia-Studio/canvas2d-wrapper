@@ -31,7 +31,7 @@ export default function mouseMove(
 		posOnMap
 	} = computeEventPositions(props, event.nativeEvent, tileSize);
 
-	if (event.nativeEvent.buttons === LEFT_BUTTON && !!props.prevX) {
+	if (event.nativeEvent.buttons === LEFT_BUTTON && !!props.prevX && !!props.prevY) {
 		let moved = false;
 		if (dragObjects) {
 			if (selectedObject === null) {
@@ -47,8 +47,8 @@ export default function mouseMove(
 				if (onElementMoved) {
 					onElementMoved(
 						selectedObject,
-						(event.screenX - props.prevX!),
-						(event.screenY - props.prevY!),
+						(event.screenX - props.prevX),
+						(event.screenY - props.prevY),
 					);
 				}
 
@@ -61,11 +61,11 @@ export default function mouseMove(
 		if (!moved) {
 			// Lock Axis
 			if (!lockXAxis) {
-				newProps.left += (event.screenX - props.prevX!);
+				newProps.left += (event.screenX - props.prevX);
 			}
 
 			if (!lockYAxis) {
-				newProps.top += (event.screenY - props.prevY!);
+				newProps.top += (event.screenY - props.prevY);
 			}
 		}
 

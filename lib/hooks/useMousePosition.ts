@@ -23,17 +23,17 @@ export default function useMousePosition(includeTouch = true): MousePos {
 			}
 			setMousePosition({ x, y });
 		};
-		window.addEventListener('mousemove', updateMousePosition);
+		globalThis.addEventListener('mousemove', updateMousePosition);
 
 		if (includeTouch) {
-			window.addEventListener('touchmove', updateMousePosition);
+			globalThis.addEventListener('touchmove', updateMousePosition);
 		}
 
 		return () => {
-			window.removeEventListener('mousemove', updateMousePosition);
+			globalThis.removeEventListener('mousemove', updateMousePosition);
 
 			if (includeTouch) {
-				window.removeEventListener('touchmove', updateMousePosition);
+				globalThis.removeEventListener('touchmove', updateMousePosition);
 			}
 		};
 	}, [includeTouch]);

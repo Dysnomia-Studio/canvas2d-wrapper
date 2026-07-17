@@ -44,7 +44,7 @@ export default function renderCanvas(
 	for (const element of elements) {
 		if (
 			element.fill !== prevFillStyle &&
-			typeof element.fill !== 'undefined'
+			element.fill !== undefined
 		) {
 			context.fillStyle = element.fill;
 			prevFillStyle = element.fill;
@@ -52,7 +52,7 @@ export default function renderCanvas(
 
 		if (
 			element.stroke !== prevStrokeStyle &&
-			typeof element.stroke !== 'undefined'
+			element.stroke !== undefined
 		) {
 			context.strokeStyle = element.stroke;
 			prevStrokeStyle = element.stroke;

@@ -1,3 +1,4 @@
+import getLineLength from '../maths/getLineLength';
 import Position2D from '../types/Position2D';
 import pointInCircle from './pointInCircle';
 
@@ -39,9 +40,7 @@ export default function pointOnLinePath(points: Position2D[], lineWidth: number,
 		};
 
 		// Line length
-		const diffX = from.x - to.x;
-		const diffY = from.y - to.y;
-		const length = Math.sqrt((diffX * diffX) + (diffY * diffY));
+		const length = getLineLength(from, to);
 
 		// Dot product of the line and Circle
 		const dot = (((pointX - from.x) * (to.x - from.x)) + ((pointY - from.y) * (to.y - from.y))) / Math.pow(length, 2);
