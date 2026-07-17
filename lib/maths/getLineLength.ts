@@ -4,5 +4,5 @@ export default function getLineLength(from: Position2D, to: Position2D): number 
 	const xDiff = to.x - from.x;
 	const yDiff = to.y - from.y;
 
-	return Math.hypot(xDiff + yDiff)
+	return Math.hypot(xDiff, yDiff)
 }
