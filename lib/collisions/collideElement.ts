@@ -1,4 +1,5 @@
 import calcTileSize from '../functions/calcTileSize';
+import { Position2D } from '../main';
 import CanvasImage from '../shapes/CanvasImage';
 import CanvasObject from '../shapes/CanvasObject';
 import Circle from '../shapes/Circle';
@@ -10,7 +11,7 @@ import pointInPolygon from './pointInPolygon';
 import pointInRectangle from './pointInRectangle';
 import pointOnLinePath from './pointOnLinePath';
 
-export default function collideElement(e: Event, elements: CanvasObject[], left: number, top: number, tileSize: number, zoom: number): CollideElementResultItem | null {
+export default function collideElement(e: Event, elements: CanvasObject[], left: number, top: number, posOnMap: Position2D, tileSize: number, zoom: number): CollideElementResultItem | null {
 	const localTileSize = calcTileSize(tileSize, zoom);
 
 	const validElements: CollideElementResultItem[] = [];
@@ -36,7 +37,7 @@ export default function collideElement(e: Event, elements: CanvasObject[], left:
 						id: image.id,
 						element,
 						originalEvent: e,
-						posOnMap: { x: image.x, y: image.y }
+						posOnMap,
 					});
 				}
 				break;
@@ -46,7 +47,7 @@ export default function collideElement(e: Event, elements: CanvasObject[], left:
 						id: element.id,
 						element,
 						originalEvent: e,
-						posOnMap: { x: element.x, y: element.y }
+						posOnMap,
 					});
 				}
 				break;
@@ -56,7 +57,7 @@ export default function collideElement(e: Event, elements: CanvasObject[], left:
 						id: element.id,
 						element,
 						originalEvent: e,
-						posOnMap: { x: element.x, y: element.y }
+						posOnMap,
 					});
 				}
 				break;
@@ -67,7 +68,7 @@ export default function collideElement(e: Event, elements: CanvasObject[], left:
 						id: element.id,
 						element,
 						originalEvent: e,
-						posOnMap: { x: element.x, y: element.y }
+						posOnMap,
 					});
 				}
 				break;

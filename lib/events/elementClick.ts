@@ -9,9 +9,9 @@ export default function elementClick(e: React.MouseEvent, elements: CanvasObject
 		left,
 		top,
 		posOnMap
-	} = computeEventPositions(state, e, tileSize);
+	} = computeEventPositions(state, e.nativeEvent, tileSize);
 
-	const clickedElement = collideElement(e.nativeEvent, elements, left, top, tileSize, state.zoom);
+	const clickedElement = collideElement(e.nativeEvent, elements, left, top, posOnMap, tileSize, state.zoom);
 	if (clickedElement !== null) {
 		return clickedElement;
 	}

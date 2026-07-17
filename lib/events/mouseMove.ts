@@ -29,13 +29,13 @@ export default function mouseMove(
 		left,
 		top,
 		posOnMap
-	} = computeEventPositions(props, event, tileSize);
+	} = computeEventPositions(props, event.nativeEvent, tileSize);
 
 	if (event.nativeEvent.buttons === LEFT_BUTTON && !!props.prevX) {
 		let moved = false;
 		if (dragObjects) {
 			if (selectedObject === null) {
-				selectedObject = collideElement(event.nativeEvent, elements, left, top, tileSize, props.zoom);
+				selectedObject = collideElement(event.nativeEvent, elements, left, top, posOnMap, tileSize, props.zoom);
 			}
 
 			if (selectedObject !== null && (selectedObject.element as any).draggable) {
@@ -81,7 +81,7 @@ export default function mouseMove(
 		}
 	} else {
 		if (onHover) {
-			onHover(collideElement(event.nativeEvent, elements, left, top, tileSize, props.zoom), posOnMap);
+			onHover(collideElement(event.nativeEvent, elements, left, top, posOnMap, tileSize, props.zoom), posOnMap);
 		}
 
 		selectedObject = null;
