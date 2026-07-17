@@ -105,6 +105,16 @@ export default function Canvas2D({
 	state.deltaTop = deltaTop;
 	state.deltaLeft = deltaLeft;
 
+	const onWheelFn = useCallback((e: React.WheelEvent) => {
+		if (onWheel) {
+			onWheel(e.nativeEvent);
+		}
+
+		if (minZoom !== maxZoom) {
+			mouseWheel(e, setState, minZoom, maxZoom);
+		}
+	}, [onWheel, maxZoom, minZoom]);
+
 	// Check inputs
 	if (minZoom > maxZoom) {
 		throw new Error('minZoom should be lower than maxZoom.');
@@ -116,15 +126,7 @@ export default function Canvas2D({
 		onMouseMove = (e: React.PointerEvent) => mouseMove(e, elements[otherProps.id], tileSize, state, setState, lockXAxis, lockYAxis, dragObjects, onElementMoved, onHover);
 	}
 
-	const onWheelFn = (e: React.WheelEvent) => {
-		if (onWheel) {
-			onWheel(e.nativeEvent);
-		}
 
-		if (minZoom !== maxZoom) {
-			mouseWheel(e, state, setState, minZoom, maxZoom);
-		}
-	};
 
 	let onClickFn;
 	if (onClick) {
