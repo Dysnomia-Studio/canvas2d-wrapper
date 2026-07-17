@@ -4,7 +4,7 @@ import Canvas2DState from '../types/Canvas2DState';
 import CollideElementResultItem from '../types/CollideElementResultItem';
 import computeEventPositions from './computeEventPositions';
 
-export default function elementClick(e: React.MouseEvent, elements: CanvasObject[], tileSize: number, state: Canvas2DState): CollideElementResultItem {
+export default function elementClick(e: React.MouseEvent, elements: CanvasObject[], tileSize: number, state: Canvas2DState, hasMovedMouse: boolean): CollideElementResultItem {
 	const {
 		left,
 		top,
@@ -13,13 +13,17 @@ export default function elementClick(e: React.MouseEvent, elements: CanvasObject
 
 	const clickedElement = collideElement(e.nativeEvent, elements, left, top, posOnMap, tileSize, state.zoom);
 	if (clickedElement !== null) {
-		return clickedElement;
+		return {
+			...clickedElement,
+			hasMovedMouse
+		};
 	}
 
 	return {
 		id: null,
 		element: null,
 		originalEvent: e.nativeEvent,
-		posOnMap
+		posOnMap,
+		hasMovedMouse,
 	} satisfies CollideElementResultItem;
 }

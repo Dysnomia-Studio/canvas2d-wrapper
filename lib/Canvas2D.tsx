@@ -6,12 +6,15 @@ import mouseWheel from './events/mouseWheel';
 import calcRatioForMinimap from './functions/calcRatioForMinimap';
 import sortElements from './functions/sortElements';
 import './index.css';
+import { Position2D } from './main.ts';
 import renderCanvas from './render/renderCanvas';
 import CanvasObject from './shapes/CanvasObject.ts';
 import { Canvas2DProps } from './types/Canvas2DProps';
 import Canvas2DState from './types/Canvas2DState';
 
 const elements: { [id: string]: CanvasObject[] } = {};
+const initialClickMousePosition: { [id: string]: Position2D } = {};
+const HASMOVED_MIN_MOVEMENT = 5; // px
 
 export default function Canvas2D({
 	width,
@@ -125,8 +128,26 @@ export default function Canvas2D({
 
 	let onClickFn;
 	if (onClick) {
-		onClickFn = (e: React.MouseEvent) => onClick(elementClick(e, elements[otherProps.id], tileSize, state));
+		onClickFn = (e: React.MouseEvent) => {
+			let hasMoved = false;
+			if (initialClickMousePosition[otherProps.id]) {
+				hasMoved = Math.abs(initialClickMousePosition[otherProps.id].x - e.nativeEvent.screenX) > HASMOVED_MIN_MOVEMENT || Math.abs(initialClickMousePosition[otherProps.id].y - e.nativeEvent.screenY) > HASMOVED_MIN_MOVEMENT;
+			}
+			onClick(elementClick(e, elements[otherProps.id], tileSize, state, hasMoved));
+		};
 	}
+
+	// Click: monitore movement
+	useEffect(() => {
+		if (onClick && state.canvas) {
+			function clickMonitoring(e: MouseEvent) {
+				initialClickMousePosition[otherProps.id] = { x: e.screenX, y: e.screenY };
+			}
+
+			state.canvas.addEventListener('mousedown', clickMonitoring);
+			return () => { state.canvas?.removeEventListener('mousedown', clickMonitoring); };
+		}
+	}, [state.canvas, onClick, otherProps.id]);
 
 
 	// Right click Event
