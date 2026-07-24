@@ -4,7 +4,10 @@ import pointInCircle from './collisions/pointInCircle';
 import pointInPolygon from './collisions/pointInPolygon';
 import pointInRectangle from './collisions/pointInRectangle';
 import pointOnLinePath from './collisions/pointOnLinePath';
+import Canvas2DWrapperContextProvider from './context/Canvas2DWrapperContextProvider';
 import preloadImages from './functions/preloadImages';
+import useCanvasOffset from './hooks/useCanvasOffset';
+import useCanvasOffsetSetter from './hooks/useCanvasOffsetSetter';
 import useGamepad from './hooks/useGamepad';
 import useKeyboard from './hooks/useKeyboard';
 import useMousePosition from './hooks/useMousePosition';
@@ -58,9 +61,14 @@ export {
 export {
 	preloadImages
 };
+// Context
+export {
+	Canvas2DWrapperContextProvider
+};
 // Hooks
 export {
-	useGamepad,
+	useCanvasOffset,
+	useCanvasOffsetSetter, useGamepad,
 	useKeyboard,
 	useMousePosition,
 	useWindowDimensions

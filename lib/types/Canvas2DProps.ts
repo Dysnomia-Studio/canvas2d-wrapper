@@ -19,8 +19,6 @@ export type Canvas2DProps = {
 	lockYAxis?: boolean,
 	smoothingQuality?: ImageSmoothingQuality,
 	dragObjects?: boolean,
-	deltaLeft?: number,
-	deltaTop?: number,
 	// Additional props
 	id: string,
 	className?: string,

@@ -1,6 +1,7 @@
 import { WheelEvent } from "react";
 import calcTileSize from "../functions/calcTileSize";
 import Canvas2DState from "../types/Canvas2DState";
+import { Canvas2DStateSetState } from "../types/Canvas2DStateSetState";
 
 const WHEEL_DELTA = 0.05;
 
@@ -9,8 +10,8 @@ function computeNewInternalOffsets(currState: Canvas2DState, event: WheelEvent<E
 	const newTileSize = calcTileSize(baseTileSize, zoom);
 
 	// Screen space old offsets
-	const offsetX = currState.left + currState.deltaLeft;
-	const offsetY = currState.top + currState.deltaTop;
+	const offsetX = currState.left;
+	const offsetY = currState.top;
 
 	// Mouse to world space
 	const worldX = (event.clientX - offsetX) / oldTileSize;
@@ -21,12 +22,12 @@ function computeNewInternalOffsets(currState: Canvas2DState, event: WheelEvent<E
 	const newYOffset = event.clientY - worldY * newTileSize;
 
 	return { 
-		left: newXOffset - currState.deltaLeft,
-		top: newYOffset - currState.deltaTop
+		left: newXOffset,
+		top: newYOffset
 	};
 }
 
-export default function mouseWheel(event: React.WheelEvent, setState: React.Dispatch<React.SetStateAction<Canvas2DState>>, minZoom: number, maxZoom: number, baseTileSize: number) {
+export default function mouseWheel(event: React.WheelEvent, setState: Canvas2DStateSetState, minZoom: number, maxZoom: number, baseTileSize: number) {
 	setState((currState) => {
 		let zoom = currState.zoom;
 		const previousZoom = zoom;

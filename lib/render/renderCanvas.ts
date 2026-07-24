@@ -31,9 +31,6 @@ export default function renderCanvas(
 	tileSize: number,
 	state: Canvas2DState,
 ) {
-	const left = state.left + state.deltaLeft;
-	const top = state.top + state.deltaTop;
-
 	let prevFillStyle = '';
 	let prevStrokeStyle = '';
 
@@ -60,7 +57,7 @@ export default function renderCanvas(
 
 		const type = element.constructorName;
 		if (renderFn[type]) {
-			renderFn[type](context, element as Circle & CanvasImage & LinePath & Rect & Text, left, top, localTileSize);
+			renderFn[type](context, element as Circle & CanvasImage & LinePath & Rect & Text, state.left, state.top, localTileSize);
 		} else {
 			throw new Error('Unsupported shape type:' + type);
 		}

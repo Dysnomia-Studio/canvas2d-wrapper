@@ -1,6 +1,7 @@
 import collideElement from '../collisions/collideElement';
 import CanvasObject from '../shapes/CanvasObject';
 import Canvas2DState from '../types/Canvas2DState';
+import { Canvas2DStateSetState } from '../types/Canvas2DStateSetState';
 import CollideElementResultItem from '../types/CollideElementResultItem';
 import Position2D from '../types/Position2D';
 import computeEventPositions from './computeEventPositions';
@@ -14,7 +15,7 @@ export default function mouseMove(
 	elements: CanvasObject[],
 	tileSize: number,
 	props: Canvas2DState,
-	setProps: React.Dispatch<React.SetStateAction<Canvas2DState>>,
+	setProps: Canvas2DStateSetState,
 	lockXAxis: boolean,
 	lockYAxis: boolean,
 	dragObjects: boolean,
@@ -39,8 +40,8 @@ export default function mouseMove(
 			}
 
 			if (selectedObject !== null && (selectedObject.element as any).draggable) {
-				selectedObject.element!.x = (-props.left - props.deltaLeft) + (event.clientX - props.boundingClientRect!.left) - ((selectedObject.element as any).width ?? 0) / 2;
-				selectedObject.element!.y = (-props.top - props.deltaLeft) + (event.clientY - props.boundingClientRect!.top) - ((selectedObject.element as any).height ?? 0) / 2;
+				selectedObject.element!.x = (-props.left) + (event.clientX - props.boundingClientRect!.left) - ((selectedObject.element as any).width ?? 0) / 2;
+				selectedObject.element!.y = (-props.top) + (event.clientY - props.boundingClientRect!.top) - ((selectedObject.element as any).height ?? 0) / 2;
 
 				moved = true;
 
@@ -72,11 +73,11 @@ export default function mouseMove(
 		if (event.nativeEvent.pointerType !== 'mouse') {
 			setTimeout(() => {
 				selectedObject = null;
-				setProps({
+				setProps(() => ({
 					...newProps,
 					prevX: null,
 					prevY: null,
-				});
+				}));
 			}, UNSELECT_TIMEOUT_MS);
 		}
 	} else {
@@ -87,9 +88,9 @@ export default function mouseMove(
 		selectedObject = null;
 	}
 
-	setProps({
+	setProps(() => ({
 		...newProps,
 		prevX: event.screenX,
 		prevY: event.screenY,
-	});
+	}));
 }

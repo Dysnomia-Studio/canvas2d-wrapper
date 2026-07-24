@@ -1,16 +1,17 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import elementClick from './events/elementClick';
 import elementRightClick from './events/elementRightClick';
 import mouseMove from './events/mouseMove';
 import mouseWheel from './events/mouseWheel';
 import calcRatioForMinimap from './functions/calcRatioForMinimap';
 import sortElements from './functions/sortElements';
+import useCanvasState from './hooks/useCanvasState.ts';
+import useCanvasStateSetter from './hooks/useCanvasStateSetter.ts';
 import './index.css';
 import { Position2D } from './main.ts';
 import renderCanvas from './render/renderCanvas';
 import CanvasObject from './shapes/CanvasObject.ts';
 import { Canvas2DProps } from './types/Canvas2DProps';
-import Canvas2DState from './types/Canvas2DState';
 
 const elements: { [id: string]: CanvasObject[] } = {};
 const initialClickMousePosition: { [id: string]: Position2D } = {};
@@ -33,8 +34,6 @@ export default function Canvas2D({
 	lockYAxis = false,
 	smoothingQuality = 'medium',
 	dragObjects = false,
-	deltaLeft = 0,
-	deltaTop = 0,
 	showMinimap = false,
 	minimapWidth = 240,
 	minimapHeight = 120,
@@ -47,17 +46,9 @@ export default function Canvas2D({
 	}
 
 	// Hooks
-	const [state, setState] = useState<Canvas2DState>({
-		left: 0,
-		top: 0,
-		width: 0,
-		height: 0,
-		zoom: 0,
-		deltaTop,
-		deltaLeft,
-		prevX: null,
-		prevY: null,
-	});
+	const state = useCanvasState(otherProps.id);
+	const setState = useCanvasStateSetter(otherProps.id);
+
 	const canvasRef = useCallback((canvas: HTMLCanvasElement) => {
 		if (canvas !== null) {
 			const context = canvas.getContext('2d');
@@ -102,9 +93,6 @@ export default function Canvas2D({
 		}
 	}, []);
 
-	state.deltaTop = deltaTop;
-	state.deltaLeft = deltaLeft;
-
 	const onWheelFn = useCallback((e: React.WheelEvent) => {
 		if (onWheel) {
 			onWheel(e.nativeEvent);
@@ -125,8 +113,6 @@ export default function Canvas2D({
 	if (trackMouseMove) {
 		onMouseMove = (e: React.PointerEvent) => mouseMove(e, elements[otherProps.id], tileSize, state, setState, lockXAxis, lockYAxis, dragObjects, onElementMoved, onHover);
 	}
-
-
 
 	let onClickFn;
 	if (onClick) {
@@ -199,7 +185,7 @@ export default function Canvas2D({
 					minimapHeight,
 					filteredElementsList,
 					tileSize / ratio,
-					{ left: minimapWidth / 2, top: minimapHeight / 2, deltaLeft: 0, deltaTop: 0, zoom: 1, width: minimapWidth, height: minimapHeight, prevX: null, prevY: null },
+					{ left: minimapWidth / 2, top: minimapHeight / 2, zoom: 1, width: minimapWidth, height: minimapHeight, prevX: null, prevY: null },
 				);
 			}
 
@@ -208,7 +194,7 @@ export default function Canvas2D({
 		globalThis.requestAnimationFrame(render);
 
 		return () => { shouldRender = false; };
-	}, [state.left, state.top, state.deltaLeft, state.deltaTop, state.zoom, state.context, onFrame]);
+	}, [state.left, state.top, state.zoom, state.context, onFrame]);
 
 	// On width/height change: reset view and setState
 	useEffect(() => {
