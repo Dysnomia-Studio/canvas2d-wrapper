@@ -111,7 +111,7 @@ export default function Canvas2D({
 		}
 
 		if (minZoom !== maxZoom) {
-			mouseWheel(e, setState, minZoom, maxZoom);
+			mouseWheel(e, setState, minZoom, maxZoom, tileSize);
 		}
 	}, [onWheel, maxZoom, minZoom]);
 
