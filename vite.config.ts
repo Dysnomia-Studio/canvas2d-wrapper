@@ -2,9 +2,9 @@ import react from '@vitejs/plugin-react';
 import { glob } from 'glob';
 import { extname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';
+import { defineConfig } from 'vitest/config';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -12,12 +12,12 @@ export default defineConfig({
 		react(),
 		libInjectCss(),
 		dts({
-			tsconfigPath: resolve(__dirname, "tsconfig.lib.json"),
+			tsconfigPath: resolve(import.meta.dirname, "tsconfig.lib.json"),
 		})
 	],
 	build: {
 		lib: {
-			entry: resolve(__dirname, 'lib/main.tsx'),
+			entry: resolve(import.meta.dirname, 'lib/main.tsx'),
 			formats: ['es']
 		}, rollupOptions: {
 			external: ['react', 'react/jsx-runtime'],
