@@ -24,14 +24,30 @@ export default function Canvas2DWrapperContextProvider({ children }: { children:
 		});
 	}, [setCanvasState]);
 
+	const getZoom = useCallback((canvasId: string) => canvasState[canvasId]?.zoom ?? 0, [canvasState]);
+	const updateZoom = useCallback((canvasId: string, zoom: number) => {
+		setCanvasState((co: CanvasState) => {
+			if (!co[canvasId]) {
+				return co;
+			}
+			co[canvasId].zoom = zoom;
+			
+			return co;
+		});
+	}, [setCanvasState]);
+
 	const providerValue = useMemo(() => ({
 		getCurrentOffset,
 		updateOffset,
+		getZoom,
+		updateZoom,
 		canvasState,
 		setCanvasState
 	}), [
 		getCurrentOffset,
 		updateOffset,
+		getZoom,
+		updateZoom,
 		canvasState,
 		setCanvasState
 	]);
