@@ -4,17 +4,17 @@ import Canvas2DWrapperContextModel from "../types/Canvas2DWrapperContextModel";
 import Position2D from "../types/Position2D";
 
 export const Canvas2DWrapperContext = createContext<Canvas2DWrapperContextModel | null>(null);
+type CanvasState = { [id: string]: Canvas2DState };
 
 export default function Canvas2DWrapperContextProvider({ children }: { children: React.ReactNode }) {
-	const [canvasState, setCanvasState] = useState<{ [id: string]: Canvas2DState }>({});
+	const [canvasState, setCanvasState] = useState<CanvasState>({});
 
 	const getCurrentOffset = useCallback((canvasId: string) => ({
-		x: canvasState[canvasId].left ?? 0,
-		y: canvasState[canvasId].top ?? 0,
+		x: canvasState[canvasId]?.left ?? 0,
+		y: canvasState[canvasId]?.top ?? 0,
 	}), [canvasState]);
 	const updateOffset = useCallback((canvasId: string, offset: Position2D) => {
-		console.log(canvasId, offset)
-		setCanvasState((co) => {
+		setCanvasState((co: CanvasState) => {
 			if (!co[canvasId]) {
 				return co;
 			}
