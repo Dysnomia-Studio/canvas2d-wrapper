@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react';
-
-type MousePos = {
-	x: number | null,
-	y: number | null,
-};
+import MousePos from '../types/MousePos';
 
 export default function useMousePosition(includeTouch = true): MousePos {
 	const [
