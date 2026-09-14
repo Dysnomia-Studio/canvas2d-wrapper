@@ -1,18 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useContext, useMemo } from 'react';
+import { GameControlsContext } from '../context/GameControlsContextProvider';
 
-let intervalId: NodeJS.Timeout;
-const FRAME_INTERVAL = 15; // TODO: requestAnimationFrame ?
 export default function useGamepad(): Gamepad | null {
-	const [gamepad, setGamepad] = useState<Gamepad | null>(null);
+	const contextValues = useContext(GameControlsContext);
 
-	useEffect(() => {
-		clearInterval(intervalId);
-		intervalId = setInterval(() =>
-			setGamepad(navigator.getGamepads()[0])
-			, FRAME_INTERVAL);
-
-		return () => clearInterval(intervalId);
-	}, []);
-
-	return gamepad;
+	return useMemo(() => contextValues?.gamepad ?? null, [contextValues?.gamepad]);
 }

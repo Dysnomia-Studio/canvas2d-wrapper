@@ -5,6 +5,7 @@ import pointInPolygon from './collisions/pointInPolygon';
 import pointInRectangle from './collisions/pointInRectangle';
 import pointOnLinePath from './collisions/pointOnLinePath';
 import Canvas2DWrapperContextProvider from './context/Canvas2DWrapperContextProvider';
+import GameControlsContextProvider from './context/GameControlsContextProvider';
 import preloadImages from './functions/preloadImages';
 import useCanvasOffset from './hooks/useCanvasOffset';
 import useCanvasOffsetSetter from './hooks/useCanvasOffsetSetter';
@@ -63,7 +64,8 @@ export {
 };
 // Context
 export {
-	Canvas2DWrapperContextProvider
+	Canvas2DWrapperContextProvider,
+	GameControlsContextProvider
 };
 // Hooks
 export {
