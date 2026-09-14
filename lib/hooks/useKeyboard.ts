@@ -1,29 +1,9 @@
-import { useEffect, useState } from 'react';
-
-type KeyboardEntries = { [id: string]: boolean };
+import { useContext, useMemo } from 'react';
+import { GameControlsContext } from '../context/GameControlsContextProvider';
+import KeyboardEntries from '../types/KeyboardEntries';
 
 export default function useKeyboard(): KeyboardEntries {
-	const [keyboard, setKeyboard] = useState<KeyboardEntries>({});
+	const contextValues = useContext(GameControlsContext);
 
-	useEffect(() => {
-		const keydown = (e: KeyboardEvent) => {
-			keyboard[e.key] = true;
-			setKeyboard(JSON.parse(JSON.stringify(keyboard)));
-		};
-		document.addEventListener('keydown', keydown);
-
-		const keyup = (e: KeyboardEvent) => {
-			keyboard[e.key] = false;
-			setKeyboard(JSON.parse(JSON.stringify(keyboard)));
-		};
-		document.addEventListener('keyup', keyup);
-
-
-		return () => {
-			document.removeEventListener('keydown', keydown);
-			document.removeEventListener('keyup', keyup);
-		};
-	}, []);
-
-	return keyboard;
+	return useMemo(() => contextValues?.keyboard ?? {}, [contextValues?.keyboard]);
 }

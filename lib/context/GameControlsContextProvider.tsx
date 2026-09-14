@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
 import GameControlsContextModel from "../types/GameControlsContextModel";
+import KeyboardEntries from "../types/KeyboardEntries";
 
 export const GameControlsContext = createContext<GameControlsContextModel | null>(null);
 
@@ -50,14 +51,41 @@ function useGamepadValues(setGamepad: React.Dispatch<React.SetStateAction<Gamepa
 
 }
 
+function useKeyboardValues(keyboard: KeyboardEntries, setKeyboard: React.Dispatch<React.SetStateAction<KeyboardEntries>>) {
+	useEffect(() => {
+		const keydown = (e: KeyboardEvent) => {
+			keyboard[e.key] = true;
+			setKeyboard(JSON.parse(JSON.stringify(keyboard)));
+		};
+		document.addEventListener('keydown', keydown);
+
+		const keyup = (e: KeyboardEvent) => {
+			keyboard[e.key] = false;
+			setKeyboard(JSON.parse(JSON.stringify(keyboard)));
+		};
+		document.addEventListener('keyup', keyup);
+
+
+		return () => {
+			document.removeEventListener('keydown', keydown);
+			document.removeEventListener('keyup', keyup);
+		};
+	}, []);
+}
+
 export default function GameControlsContextProvider({ children }: { children: React.ReactNode }) {
 	const [gamepad, setGamepad] = useState<Gamepad | null>(null);
 	useGamepadValues(setGamepad);
 
+	const [keyboard, setKeyboard] = useState<KeyboardEntries>({});
+	useKeyboardValues(keyboard, setKeyboard);
+
 	const providerValue = useMemo(() => ({
-		gamepad
+		gamepad,
+		keyboard
 	}), [
-		gamepad
+		gamepad,
+		keyboard
 	]);
 
 	return (
