@@ -9,6 +9,8 @@ import GameControlsContextProvider from './context/GameControlsContextProvider';
 import preloadImages from './functions/preloadImages';
 import useCanvasOffset from './hooks/useCanvasOffset';
 import useCanvasOffsetSetter from './hooks/useCanvasOffsetSetter';
+import useCanvasZoom from './hooks/useCanvasZoom';
+import useCanvasZoomSetter from './hooks/useCanvasZoomSetter';
 import useGamepad from './hooks/useGamepad';
 import useKeyboard from './hooks/useKeyboard';
 import useMousePosition from './hooks/useMousePosition';
@@ -70,7 +72,10 @@ export {
 // Hooks
 export {
 	useCanvasOffset,
-	useCanvasOffsetSetter, useGamepad,
+	useCanvasOffsetSetter,
+	useCanvasZoom,
+	useCanvasZoomSetter,
+	useGamepad,
 	useKeyboard,
 	useMousePosition,
 	useWindowDimensions
