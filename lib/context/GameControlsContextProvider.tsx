@@ -55,12 +55,16 @@ function useKeyboardValues(keyboard: KeyboardEntries, setKeyboard: React.Dispatc
 	useEffect(() => {
 		const keydown = (e: KeyboardEvent) => {
 			keyboard[e.key] = true;
+			keyboard[e.code] = true;
+			keyboard['Meta'] = e.metaKey;
 			setKeyboard(JSON.parse(JSON.stringify(keyboard)));
 		};
 		document.addEventListener('keydown', keydown);
 
 		const keyup = (e: KeyboardEvent) => {
 			keyboard[e.key] = false;
+			keyboard[e.code] = false;
+			keyboard['Meta'] = e.metaKey;
 			setKeyboard(JSON.parse(JSON.stringify(keyboard)));
 		};
 		document.addEventListener('keyup', keyup);
